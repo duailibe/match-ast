@@ -12,10 +12,23 @@
     "match",
     "types"
   ],
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "lint": "eslint . && prettier --list-different README.md",
+    "prepare": "node scripts/build.js",
+    "test": "jest"
+  },
   "devDependencies": {
+    "@babel/parser": "^7.0.0-beta.54",
+    "@babel/types": "^7.0.0-beta.53",
     "eslint": "^5.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.2",
-    "prettier": "1.13.7"
+    "jest": "^23.4.1",
+    "prettier": "1.13.7",
+    "rollup": "^0.62.0",
+    "rollup-plugin-commonjs": "^9.1.3"
   }
 }
