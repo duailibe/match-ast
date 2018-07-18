@@ -12,6 +12,13 @@ test("only checks type with no arguments", () => {
   expect(check(ast.callee)).toBeFalsy();
 });
 
+test("should only check type with an empty object", () => {
+  const checkCall = t.isCallExpression({});
+  const checkIdentifier = t.isIdentifier({});
+  expect(checkCall(ast)).toBeTruthy();
+  expect(checkIdentifier(parser.parseExpression("foo"))).toBeTruthy();
+});
+
 test("checks properties if argument is an object", () => {
   const check = t.isCallExpression({
     callee: t.isMemberExpression()
@@ -21,6 +28,36 @@ test("checks properties if argument is an object", () => {
   });
   expect(check(ast)).toBeTruthy();
   expect(checkFail(ast)).toBeFalsy();
+});
+
+test("fails with extra properties", () => {
+  function check(ast, fn, keys, prop) {
+    const obj = {};
+    do {
+      obj[prop[0]] = prop[1];
+      const checkFn = fn(obj);
+      expect(checkFn(ast)).toBeFalsy();
+    } while ((prop = keys.shift()));
+  }
+
+  check(
+    parser.parseExpression("foo"),
+    t.isIdentifier,
+    [["name", "foo"]],
+    [["value", "bar"]]
+  );
+
+  check(
+    parser.parseExpression("foo(bar)"),
+    t.isCallExpression,
+    [
+      ["object", t.isIdentifier()],
+      ["arguments", [t.isIdentifier()]]
+    ],
+    [["value", "bar"]]
+  );
+
+  expect.assertions(5);
 });
 
 test("checks array if argument is an array", () => {

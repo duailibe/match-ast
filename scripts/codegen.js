@@ -20,16 +20,22 @@ function noMatcher(type) {
 
 function singleMatcher(type, key) {
   return `
-    export function is${type}(matchers) {
-      if (typeof matchers === "undefined") {
+    export function is${type}(matcher) {
+      if (typeof matcher === "undefined") {
         return node => ${checkNode(type)};
       }
 
-      const m = typeof matchers === "object" && !Array.isArray(matchers)
-        ? matchers["${key}"]
-        : matchers;
+      if (typeof matcher !== "object" || Array.isArray(matcher)) {
+        return node => ${checkNode(type)} && match(matcher, node["${key}"]);
+      }
 
-      return node => ${checkNode(type)} && match(m, node["${key}"]);
+      const m = matcher["${key}"], n = Object.keys(matcher).length;
+
+      if (n > 1 || (n === 1 && !m)) {
+        return falseFn;
+      }
+
+      return node => ${checkNode(type)} && (!m || match(m, node["${key}"]));
     }
   `;
 }
@@ -40,7 +46,7 @@ function objMatcher(type, keys) {
 
   keys.forEach((key, idx) => {
     const id = `m${idx}`;
-    decls.push(`${id} = matchers["${key}"]`);
+    decls.push(`${id} = matchers["${key}"] || (n--, false)`);
     matchs.push(`(!${id} || match(${id}, node["${key}"]))`);
   });
 
@@ -50,7 +56,11 @@ function objMatcher(type, keys) {
         return node => node && node.type === "${type}";
       }
 
-      const ${decls.join(",")};
+      let n = ${keys.length}, ${decls.join(",")};
+
+      if (Object.keys(matchers).length !== n) {
+        return falseFn;
+      }
 
       return node => ${checkNode(type)} && ${matchs.join("&&")}
     }
@@ -62,6 +72,8 @@ module.exports = function() {
     import match from "./match";
 
     export * from "./builtins";
+
+    const falseFn = () => false;
   `;
 
   for (const type of Object.keys(typeKeys)) {
