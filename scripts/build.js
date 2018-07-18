@@ -2,8 +2,18 @@
 
 const fs = require("fs");
 const rollup = require("rollup");
-const rollupConfig = require("./rollup.config");
+const commonjs = require("rollup-plugin-commonjs");
 const codegen = require("./codegen");
 
-fs.writeFileSync("src/index.js", codegen());
-rollup.rollup(rollupConfig).then(result => result.write(rollupConfig.output));
+fs.writeFileSync("src/generated.js", codegen());
+rollup
+  .rollup({
+    input: "src/generated.js",
+    plugins: [commonjs()]
+  })
+  .then(result =>
+    result.write({
+      file: "index.js",
+      format: "cjs"
+    })
+  );
