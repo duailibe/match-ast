@@ -7,12 +7,13 @@ export function isArrayExpression(matchers) {
     return node => node && node.type === "ArrayExpression";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["elements"]
       : matchers;
+
   return node =>
-    node && node.type === "ArrayExpression" && match(matcher, node["elements"]);
+    node && node.type === "ArrayExpression" && match(m, node["elements"]);
 }
 
 export function isAssignmentExpression(matchers) {
@@ -20,16 +21,16 @@ export function isAssignmentExpression(matchers) {
     return node => node && node.type === "AssignmentExpression";
   }
 
-  const _m0_ = matchers["operator"];
-  const _m1_ = matchers["left"];
-  const _m2_ = matchers["right"];
+  const m0 = matchers["operator"],
+    m1 = matchers["left"],
+    m2 = matchers["right"];
 
   return node =>
     node &&
     node.type === "AssignmentExpression" &&
-    (!_m0_ || match(_m0_, node["operator"])) &&
-    (!_m1_ || match(_m1_, node["left"])) &&
-    (!_m2_ || match(_m2_, node["right"]));
+    (!m0 || match(m0, node["operator"])) &&
+    (!m1 || match(m1, node["left"])) &&
+    (!m2 || match(m2, node["right"]));
 }
 
 export function isBinaryExpression(matchers) {
@@ -37,16 +38,16 @@ export function isBinaryExpression(matchers) {
     return node => node && node.type === "BinaryExpression";
   }
 
-  const _m0_ = matchers["operator"];
-  const _m1_ = matchers["left"];
-  const _m2_ = matchers["right"];
+  const m0 = matchers["operator"],
+    m1 = matchers["left"],
+    m2 = matchers["right"];
 
   return node =>
     node &&
     node.type === "BinaryExpression" &&
-    (!_m0_ || match(_m0_, node["operator"])) &&
-    (!_m1_ || match(_m1_, node["left"])) &&
-    (!_m2_ || match(_m2_, node["right"]));
+    (!m0 || match(m0, node["operator"])) &&
+    (!m1 || match(m1, node["left"])) &&
+    (!m2 || match(m2, node["right"]));
 }
 
 export function isInterpreterDirective(matchers) {
@@ -54,14 +55,13 @@ export function isInterpreterDirective(matchers) {
     return node => node && node.type === "InterpreterDirective";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["value"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "InterpreterDirective" &&
-    match(matcher, node["value"]);
+    node && node.type === "InterpreterDirective" && match(m, node["value"]);
 }
 
 export function isDirective(matchers) {
@@ -69,12 +69,12 @@ export function isDirective(matchers) {
     return node => node && node.type === "Directive";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["value"]
       : matchers;
-  return node =>
-    node && node.type === "Directive" && match(matcher, node["value"]);
+
+  return node => node && node.type === "Directive" && match(m, node["value"]);
 }
 
 export function isDirectiveLiteral(matchers) {
@@ -82,12 +82,13 @@ export function isDirectiveLiteral(matchers) {
     return node => node && node.type === "DirectiveLiteral";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["value"]
       : matchers;
+
   return node =>
-    node && node.type === "DirectiveLiteral" && match(matcher, node["value"]);
+    node && node.type === "DirectiveLiteral" && match(m, node["value"]);
 }
 
 export function isBlockStatement(matchers) {
@@ -95,14 +96,14 @@ export function isBlockStatement(matchers) {
     return node => node && node.type === "BlockStatement";
   }
 
-  const _m0_ = matchers["body"];
-  const _m1_ = matchers["directives"];
+  const m0 = matchers["body"],
+    m1 = matchers["directives"];
 
   return node =>
     node &&
     node.type === "BlockStatement" &&
-    (!_m0_ || match(_m0_, node["body"])) &&
-    (!_m1_ || match(_m1_, node["directives"]));
+    (!m0 || match(m0, node["body"])) &&
+    (!m1 || match(m1, node["directives"]));
 }
 
 export function isBreakStatement(matchers) {
@@ -110,12 +111,13 @@ export function isBreakStatement(matchers) {
     return node => node && node.type === "BreakStatement";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["label"]
       : matchers;
+
   return node =>
-    node && node.type === "BreakStatement" && match(matcher, node["label"]);
+    node && node.type === "BreakStatement" && match(m, node["label"]);
 }
 
 export function isCallExpression(matchers) {
@@ -123,14 +125,14 @@ export function isCallExpression(matchers) {
     return node => node && node.type === "CallExpression";
   }
 
-  const _m0_ = matchers["callee"];
-  const _m1_ = matchers["arguments"];
+  const m0 = matchers["callee"],
+    m1 = matchers["arguments"];
 
   return node =>
     node &&
     node.type === "CallExpression" &&
-    (!_m0_ || match(_m0_, node["callee"])) &&
-    (!_m1_ || match(_m1_, node["arguments"]));
+    (!m0 || match(m0, node["callee"])) &&
+    (!m1 || match(m1, node["arguments"]));
 }
 
 export function isCatchClause(matchers) {
@@ -138,14 +140,14 @@ export function isCatchClause(matchers) {
     return node => node && node.type === "CatchClause";
   }
 
-  const _m0_ = matchers["param"];
-  const _m1_ = matchers["body"];
+  const m0 = matchers["param"],
+    m1 = matchers["body"];
 
   return node =>
     node &&
     node.type === "CatchClause" &&
-    (!_m0_ || match(_m0_, node["param"])) &&
-    (!_m1_ || match(_m1_, node["body"]));
+    (!m0 || match(m0, node["param"])) &&
+    (!m1 || match(m1, node["body"]));
 }
 
 export function isConditionalExpression(matchers) {
@@ -153,16 +155,16 @@ export function isConditionalExpression(matchers) {
     return node => node && node.type === "ConditionalExpression";
   }
 
-  const _m0_ = matchers["test"];
-  const _m1_ = matchers["consequent"];
-  const _m2_ = matchers["alternate"];
+  const m0 = matchers["test"],
+    m1 = matchers["consequent"],
+    m2 = matchers["alternate"];
 
   return node =>
     node &&
     node.type === "ConditionalExpression" &&
-    (!_m0_ || match(_m0_, node["test"])) &&
-    (!_m1_ || match(_m1_, node["consequent"])) &&
-    (!_m2_ || match(_m2_, node["alternate"]));
+    (!m0 || match(m0, node["test"])) &&
+    (!m1 || match(m1, node["consequent"])) &&
+    (!m2 || match(m2, node["alternate"]));
 }
 
 export function isContinueStatement(matchers) {
@@ -170,19 +172,18 @@ export function isContinueStatement(matchers) {
     return node => node && node.type === "ContinueStatement";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["label"]
       : matchers;
+
   return node =>
-    node && node.type === "ContinueStatement" && match(matcher, node["label"]);
+    node && node.type === "ContinueStatement" && match(m, node["label"]);
 }
 
-function __isDebuggerStatement(node) {
-  return node && node.type === "DebuggerStatement";
-}
+var f0;
 export function isDebuggerStatement() {
-  return __isDebuggerStatement;
+  return f0 || (f0 = node => node && node.type === "DebuggerStatement");
 }
 
 export function isDoWhileStatement(matchers) {
@@ -190,21 +191,19 @@ export function isDoWhileStatement(matchers) {
     return node => node && node.type === "DoWhileStatement";
   }
 
-  const _m0_ = matchers["test"];
-  const _m1_ = matchers["body"];
+  const m0 = matchers["test"],
+    m1 = matchers["body"];
 
   return node =>
     node &&
     node.type === "DoWhileStatement" &&
-    (!_m0_ || match(_m0_, node["test"])) &&
-    (!_m1_ || match(_m1_, node["body"]));
+    (!m0 || match(m0, node["test"])) &&
+    (!m1 || match(m1, node["body"]));
 }
 
-function __isEmptyStatement(node) {
-  return node && node.type === "EmptyStatement";
-}
+var f1;
 export function isEmptyStatement() {
-  return __isEmptyStatement;
+  return f1 || (f1 = node => node && node.type === "EmptyStatement");
 }
 
 export function isExpressionStatement(matchers) {
@@ -212,14 +211,13 @@ export function isExpressionStatement(matchers) {
     return node => node && node.type === "ExpressionStatement";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["expression"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "ExpressionStatement" &&
-    match(matcher, node["expression"]);
+    node && node.type === "ExpressionStatement" && match(m, node["expression"]);
 }
 
 export function isFile(matchers) {
@@ -227,16 +225,16 @@ export function isFile(matchers) {
     return node => node && node.type === "File";
   }
 
-  const _m0_ = matchers["program"];
-  const _m1_ = matchers["comments"];
-  const _m2_ = matchers["tokens"];
+  const m0 = matchers["program"],
+    m1 = matchers["comments"],
+    m2 = matchers["tokens"];
 
   return node =>
     node &&
     node.type === "File" &&
-    (!_m0_ || match(_m0_, node["program"])) &&
-    (!_m1_ || match(_m1_, node["comments"])) &&
-    (!_m2_ || match(_m2_, node["tokens"]));
+    (!m0 || match(m0, node["program"])) &&
+    (!m1 || match(m1, node["comments"])) &&
+    (!m2 || match(m2, node["tokens"]));
 }
 
 export function isForInStatement(matchers) {
@@ -244,16 +242,16 @@ export function isForInStatement(matchers) {
     return node => node && node.type === "ForInStatement";
   }
 
-  const _m0_ = matchers["left"];
-  const _m1_ = matchers["right"];
-  const _m2_ = matchers["body"];
+  const m0 = matchers["left"],
+    m1 = matchers["right"],
+    m2 = matchers["body"];
 
   return node =>
     node &&
     node.type === "ForInStatement" &&
-    (!_m0_ || match(_m0_, node["left"])) &&
-    (!_m1_ || match(_m1_, node["right"])) &&
-    (!_m2_ || match(_m2_, node["body"]));
+    (!m0 || match(m0, node["left"])) &&
+    (!m1 || match(m1, node["right"])) &&
+    (!m2 || match(m2, node["body"]));
 }
 
 export function isForStatement(matchers) {
@@ -261,18 +259,18 @@ export function isForStatement(matchers) {
     return node => node && node.type === "ForStatement";
   }
 
-  const _m0_ = matchers["init"];
-  const _m1_ = matchers["test"];
-  const _m2_ = matchers["update"];
-  const _m3_ = matchers["body"];
+  const m0 = matchers["init"],
+    m1 = matchers["test"],
+    m2 = matchers["update"],
+    m3 = matchers["body"];
 
   return node =>
     node &&
     node.type === "ForStatement" &&
-    (!_m0_ || match(_m0_, node["init"])) &&
-    (!_m1_ || match(_m1_, node["test"])) &&
-    (!_m2_ || match(_m2_, node["update"])) &&
-    (!_m3_ || match(_m3_, node["body"]));
+    (!m0 || match(m0, node["init"])) &&
+    (!m1 || match(m1, node["test"])) &&
+    (!m2 || match(m2, node["update"])) &&
+    (!m3 || match(m3, node["body"]));
 }
 
 export function isFunctionDeclaration(matchers) {
@@ -280,20 +278,20 @@ export function isFunctionDeclaration(matchers) {
     return node => node && node.type === "FunctionDeclaration";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["params"];
-  const _m2_ = matchers["body"];
-  const _m3_ = matchers["generator"];
-  const _m4_ = matchers["async"];
+  const m0 = matchers["id"],
+    m1 = matchers["params"],
+    m2 = matchers["body"],
+    m3 = matchers["generator"],
+    m4 = matchers["async"];
 
   return node =>
     node &&
     node.type === "FunctionDeclaration" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["params"])) &&
-    (!_m2_ || match(_m2_, node["body"])) &&
-    (!_m3_ || match(_m3_, node["generator"])) &&
-    (!_m4_ || match(_m4_, node["async"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["params"])) &&
+    (!m2 || match(m2, node["body"])) &&
+    (!m3 || match(m3, node["generator"])) &&
+    (!m4 || match(m4, node["async"]));
 }
 
 export function isFunctionExpression(matchers) {
@@ -301,20 +299,20 @@ export function isFunctionExpression(matchers) {
     return node => node && node.type === "FunctionExpression";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["params"];
-  const _m2_ = matchers["body"];
-  const _m3_ = matchers["generator"];
-  const _m4_ = matchers["async"];
+  const m0 = matchers["id"],
+    m1 = matchers["params"],
+    m2 = matchers["body"],
+    m3 = matchers["generator"],
+    m4 = matchers["async"];
 
   return node =>
     node &&
     node.type === "FunctionExpression" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["params"])) &&
-    (!_m2_ || match(_m2_, node["body"])) &&
-    (!_m3_ || match(_m3_, node["generator"])) &&
-    (!_m4_ || match(_m4_, node["async"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["params"])) &&
+    (!m2 || match(m2, node["body"])) &&
+    (!m3 || match(m3, node["generator"])) &&
+    (!m4 || match(m4, node["async"]));
 }
 
 export function isIdentifier(matchers) {
@@ -322,12 +320,12 @@ export function isIdentifier(matchers) {
     return node => node && node.type === "Identifier";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["name"]
       : matchers;
-  return node =>
-    node && node.type === "Identifier" && match(matcher, node["name"]);
+
+  return node => node && node.type === "Identifier" && match(m, node["name"]);
 }
 
 export function isIfStatement(matchers) {
@@ -335,16 +333,16 @@ export function isIfStatement(matchers) {
     return node => node && node.type === "IfStatement";
   }
 
-  const _m0_ = matchers["test"];
-  const _m1_ = matchers["consequent"];
-  const _m2_ = matchers["alternate"];
+  const m0 = matchers["test"],
+    m1 = matchers["consequent"],
+    m2 = matchers["alternate"];
 
   return node =>
     node &&
     node.type === "IfStatement" &&
-    (!_m0_ || match(_m0_, node["test"])) &&
-    (!_m1_ || match(_m1_, node["consequent"])) &&
-    (!_m2_ || match(_m2_, node["alternate"]));
+    (!m0 || match(m0, node["test"])) &&
+    (!m1 || match(m1, node["consequent"])) &&
+    (!m2 || match(m2, node["alternate"]));
 }
 
 export function isLabeledStatement(matchers) {
@@ -352,14 +350,14 @@ export function isLabeledStatement(matchers) {
     return node => node && node.type === "LabeledStatement";
   }
 
-  const _m0_ = matchers["label"];
-  const _m1_ = matchers["body"];
+  const m0 = matchers["label"],
+    m1 = matchers["body"];
 
   return node =>
     node &&
     node.type === "LabeledStatement" &&
-    (!_m0_ || match(_m0_, node["label"])) &&
-    (!_m1_ || match(_m1_, node["body"]));
+    (!m0 || match(m0, node["label"])) &&
+    (!m1 || match(m1, node["body"]));
 }
 
 export function isStringLiteral(matchers) {
@@ -367,12 +365,13 @@ export function isStringLiteral(matchers) {
     return node => node && node.type === "StringLiteral";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["value"]
       : matchers;
+
   return node =>
-    node && node.type === "StringLiteral" && match(matcher, node["value"]);
+    node && node.type === "StringLiteral" && match(m, node["value"]);
 }
 
 export function isNumericLiteral(matchers) {
@@ -380,19 +379,18 @@ export function isNumericLiteral(matchers) {
     return node => node && node.type === "NumericLiteral";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["value"]
       : matchers;
+
   return node =>
-    node && node.type === "NumericLiteral" && match(matcher, node["value"]);
+    node && node.type === "NumericLiteral" && match(m, node["value"]);
 }
 
-function __isNullLiteral(node) {
-  return node && node.type === "NullLiteral";
-}
+var f2;
 export function isNullLiteral() {
-  return __isNullLiteral;
+  return f2 || (f2 = node => node && node.type === "NullLiteral");
 }
 
 export function isBooleanLiteral(matchers) {
@@ -400,12 +398,13 @@ export function isBooleanLiteral(matchers) {
     return node => node && node.type === "BooleanLiteral";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["value"]
       : matchers;
+
   return node =>
-    node && node.type === "BooleanLiteral" && match(matcher, node["value"]);
+    node && node.type === "BooleanLiteral" && match(m, node["value"]);
 }
 
 export function isRegExpLiteral(matchers) {
@@ -413,14 +412,14 @@ export function isRegExpLiteral(matchers) {
     return node => node && node.type === "RegExpLiteral";
   }
 
-  const _m0_ = matchers["pattern"];
-  const _m1_ = matchers["flags"];
+  const m0 = matchers["pattern"],
+    m1 = matchers["flags"];
 
   return node =>
     node &&
     node.type === "RegExpLiteral" &&
-    (!_m0_ || match(_m0_, node["pattern"])) &&
-    (!_m1_ || match(_m1_, node["flags"]));
+    (!m0 || match(m0, node["pattern"])) &&
+    (!m1 || match(m1, node["flags"]));
 }
 
 export function isLogicalExpression(matchers) {
@@ -428,16 +427,16 @@ export function isLogicalExpression(matchers) {
     return node => node && node.type === "LogicalExpression";
   }
 
-  const _m0_ = matchers["operator"];
-  const _m1_ = matchers["left"];
-  const _m2_ = matchers["right"];
+  const m0 = matchers["operator"],
+    m1 = matchers["left"],
+    m2 = matchers["right"];
 
   return node =>
     node &&
     node.type === "LogicalExpression" &&
-    (!_m0_ || match(_m0_, node["operator"])) &&
-    (!_m1_ || match(_m1_, node["left"])) &&
-    (!_m2_ || match(_m2_, node["right"]));
+    (!m0 || match(m0, node["operator"])) &&
+    (!m1 || match(m1, node["left"])) &&
+    (!m2 || match(m2, node["right"]));
 }
 
 export function isMemberExpression(matchers) {
@@ -445,18 +444,18 @@ export function isMemberExpression(matchers) {
     return node => node && node.type === "MemberExpression";
   }
 
-  const _m0_ = matchers["object"];
-  const _m1_ = matchers["property"];
-  const _m2_ = matchers["computed"];
-  const _m3_ = matchers["optional"];
+  const m0 = matchers["object"],
+    m1 = matchers["property"],
+    m2 = matchers["computed"],
+    m3 = matchers["optional"];
 
   return node =>
     node &&
     node.type === "MemberExpression" &&
-    (!_m0_ || match(_m0_, node["object"])) &&
-    (!_m1_ || match(_m1_, node["property"])) &&
-    (!_m2_ || match(_m2_, node["computed"])) &&
-    (!_m3_ || match(_m3_, node["optional"]));
+    (!m0 || match(m0, node["object"])) &&
+    (!m1 || match(m1, node["property"])) &&
+    (!m2 || match(m2, node["computed"])) &&
+    (!m3 || match(m3, node["optional"]));
 }
 
 export function isNewExpression(matchers) {
@@ -464,14 +463,14 @@ export function isNewExpression(matchers) {
     return node => node && node.type === "NewExpression";
   }
 
-  const _m0_ = matchers["callee"];
-  const _m1_ = matchers["arguments"];
+  const m0 = matchers["callee"],
+    m1 = matchers["arguments"];
 
   return node =>
     node &&
     node.type === "NewExpression" &&
-    (!_m0_ || match(_m0_, node["callee"])) &&
-    (!_m1_ || match(_m1_, node["arguments"]));
+    (!m0 || match(m0, node["callee"])) &&
+    (!m1 || match(m1, node["arguments"]));
 }
 
 export function isProgram(matchers) {
@@ -479,18 +478,18 @@ export function isProgram(matchers) {
     return node => node && node.type === "Program";
   }
 
-  const _m0_ = matchers["body"];
-  const _m1_ = matchers["directives"];
-  const _m2_ = matchers["sourceType"];
-  const _m3_ = matchers["interpreter"];
+  const m0 = matchers["body"],
+    m1 = matchers["directives"],
+    m2 = matchers["sourceType"],
+    m3 = matchers["interpreter"];
 
   return node =>
     node &&
     node.type === "Program" &&
-    (!_m0_ || match(_m0_, node["body"])) &&
-    (!_m1_ || match(_m1_, node["directives"])) &&
-    (!_m2_ || match(_m2_, node["sourceType"])) &&
-    (!_m3_ || match(_m3_, node["interpreter"]));
+    (!m0 || match(m0, node["body"])) &&
+    (!m1 || match(m1, node["directives"])) &&
+    (!m2 || match(m2, node["sourceType"])) &&
+    (!m3 || match(m3, node["interpreter"]));
 }
 
 export function isObjectExpression(matchers) {
@@ -498,14 +497,13 @@ export function isObjectExpression(matchers) {
     return node => node && node.type === "ObjectExpression";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["properties"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "ObjectExpression" &&
-    match(matcher, node["properties"]);
+    node && node.type === "ObjectExpression" && match(m, node["properties"]);
 }
 
 export function isObjectMethod(matchers) {
@@ -513,20 +511,20 @@ export function isObjectMethod(matchers) {
     return node => node && node.type === "ObjectMethod";
   }
 
-  const _m0_ = matchers["kind"];
-  const _m1_ = matchers["key"];
-  const _m2_ = matchers["params"];
-  const _m3_ = matchers["body"];
-  const _m4_ = matchers["computed"];
+  const m0 = matchers["kind"],
+    m1 = matchers["key"],
+    m2 = matchers["params"],
+    m3 = matchers["body"],
+    m4 = matchers["computed"];
 
   return node =>
     node &&
     node.type === "ObjectMethod" &&
-    (!_m0_ || match(_m0_, node["kind"])) &&
-    (!_m1_ || match(_m1_, node["key"])) &&
-    (!_m2_ || match(_m2_, node["params"])) &&
-    (!_m3_ || match(_m3_, node["body"])) &&
-    (!_m4_ || match(_m4_, node["computed"]));
+    (!m0 || match(m0, node["kind"])) &&
+    (!m1 || match(m1, node["key"])) &&
+    (!m2 || match(m2, node["params"])) &&
+    (!m3 || match(m3, node["body"])) &&
+    (!m4 || match(m4, node["computed"]));
 }
 
 export function isObjectProperty(matchers) {
@@ -534,20 +532,20 @@ export function isObjectProperty(matchers) {
     return node => node && node.type === "ObjectProperty";
   }
 
-  const _m0_ = matchers["key"];
-  const _m1_ = matchers["value"];
-  const _m2_ = matchers["computed"];
-  const _m3_ = matchers["shorthand"];
-  const _m4_ = matchers["decorators"];
+  const m0 = matchers["key"],
+    m1 = matchers["value"],
+    m2 = matchers["computed"],
+    m3 = matchers["shorthand"],
+    m4 = matchers["decorators"];
 
   return node =>
     node &&
     node.type === "ObjectProperty" &&
-    (!_m0_ || match(_m0_, node["key"])) &&
-    (!_m1_ || match(_m1_, node["value"])) &&
-    (!_m2_ || match(_m2_, node["computed"])) &&
-    (!_m3_ || match(_m3_, node["shorthand"])) &&
-    (!_m4_ || match(_m4_, node["decorators"]));
+    (!m0 || match(m0, node["key"])) &&
+    (!m1 || match(m1, node["value"])) &&
+    (!m2 || match(m2, node["computed"])) &&
+    (!m3 || match(m3, node["shorthand"])) &&
+    (!m4 || match(m4, node["decorators"]));
 }
 
 export function isRestElement(matchers) {
@@ -555,12 +553,13 @@ export function isRestElement(matchers) {
     return node => node && node.type === "RestElement";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["argument"]
       : matchers;
+
   return node =>
-    node && node.type === "RestElement" && match(matcher, node["argument"]);
+    node && node.type === "RestElement" && match(m, node["argument"]);
 }
 
 export function isReturnStatement(matchers) {
@@ -568,12 +567,13 @@ export function isReturnStatement(matchers) {
     return node => node && node.type === "ReturnStatement";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["argument"]
       : matchers;
+
   return node =>
-    node && node.type === "ReturnStatement" && match(matcher, node["argument"]);
+    node && node.type === "ReturnStatement" && match(m, node["argument"]);
 }
 
 export function isSequenceExpression(matchers) {
@@ -581,14 +581,13 @@ export function isSequenceExpression(matchers) {
     return node => node && node.type === "SequenceExpression";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["expressions"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "SequenceExpression" &&
-    match(matcher, node["expressions"]);
+    node && node.type === "SequenceExpression" && match(m, node["expressions"]);
 }
 
 export function isSwitchCase(matchers) {
@@ -596,14 +595,14 @@ export function isSwitchCase(matchers) {
     return node => node && node.type === "SwitchCase";
   }
 
-  const _m0_ = matchers["test"];
-  const _m1_ = matchers["consequent"];
+  const m0 = matchers["test"],
+    m1 = matchers["consequent"];
 
   return node =>
     node &&
     node.type === "SwitchCase" &&
-    (!_m0_ || match(_m0_, node["test"])) &&
-    (!_m1_ || match(_m1_, node["consequent"]));
+    (!m0 || match(m0, node["test"])) &&
+    (!m1 || match(m1, node["consequent"]));
 }
 
 export function isSwitchStatement(matchers) {
@@ -611,21 +610,19 @@ export function isSwitchStatement(matchers) {
     return node => node && node.type === "SwitchStatement";
   }
 
-  const _m0_ = matchers["discriminant"];
-  const _m1_ = matchers["cases"];
+  const m0 = matchers["discriminant"],
+    m1 = matchers["cases"];
 
   return node =>
     node &&
     node.type === "SwitchStatement" &&
-    (!_m0_ || match(_m0_, node["discriminant"])) &&
-    (!_m1_ || match(_m1_, node["cases"]));
+    (!m0 || match(m0, node["discriminant"])) &&
+    (!m1 || match(m1, node["cases"]));
 }
 
-function __isThisExpression(node) {
-  return node && node.type === "ThisExpression";
-}
+var f3;
 export function isThisExpression() {
-  return __isThisExpression;
+  return f3 || (f3 = node => node && node.type === "ThisExpression");
 }
 
 export function isThrowStatement(matchers) {
@@ -633,12 +630,13 @@ export function isThrowStatement(matchers) {
     return node => node && node.type === "ThrowStatement";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["argument"]
       : matchers;
+
   return node =>
-    node && node.type === "ThrowStatement" && match(matcher, node["argument"]);
+    node && node.type === "ThrowStatement" && match(m, node["argument"]);
 }
 
 export function isTryStatement(matchers) {
@@ -646,16 +644,16 @@ export function isTryStatement(matchers) {
     return node => node && node.type === "TryStatement";
   }
 
-  const _m0_ = matchers["block"];
-  const _m1_ = matchers["handler"];
-  const _m2_ = matchers["finalizer"];
+  const m0 = matchers["block"],
+    m1 = matchers["handler"],
+    m2 = matchers["finalizer"];
 
   return node =>
     node &&
     node.type === "TryStatement" &&
-    (!_m0_ || match(_m0_, node["block"])) &&
-    (!_m1_ || match(_m1_, node["handler"])) &&
-    (!_m2_ || match(_m2_, node["finalizer"]));
+    (!m0 || match(m0, node["block"])) &&
+    (!m1 || match(m1, node["handler"])) &&
+    (!m2 || match(m2, node["finalizer"]));
 }
 
 export function isUnaryExpression(matchers) {
@@ -663,16 +661,16 @@ export function isUnaryExpression(matchers) {
     return node => node && node.type === "UnaryExpression";
   }
 
-  const _m0_ = matchers["operator"];
-  const _m1_ = matchers["argument"];
-  const _m2_ = matchers["prefix"];
+  const m0 = matchers["operator"],
+    m1 = matchers["argument"],
+    m2 = matchers["prefix"];
 
   return node =>
     node &&
     node.type === "UnaryExpression" &&
-    (!_m0_ || match(_m0_, node["operator"])) &&
-    (!_m1_ || match(_m1_, node["argument"])) &&
-    (!_m2_ || match(_m2_, node["prefix"]));
+    (!m0 || match(m0, node["operator"])) &&
+    (!m1 || match(m1, node["argument"])) &&
+    (!m2 || match(m2, node["prefix"]));
 }
 
 export function isUpdateExpression(matchers) {
@@ -680,16 +678,16 @@ export function isUpdateExpression(matchers) {
     return node => node && node.type === "UpdateExpression";
   }
 
-  const _m0_ = matchers["operator"];
-  const _m1_ = matchers["argument"];
-  const _m2_ = matchers["prefix"];
+  const m0 = matchers["operator"],
+    m1 = matchers["argument"],
+    m2 = matchers["prefix"];
 
   return node =>
     node &&
     node.type === "UpdateExpression" &&
-    (!_m0_ || match(_m0_, node["operator"])) &&
-    (!_m1_ || match(_m1_, node["argument"])) &&
-    (!_m2_ || match(_m2_, node["prefix"]));
+    (!m0 || match(m0, node["operator"])) &&
+    (!m1 || match(m1, node["argument"])) &&
+    (!m2 || match(m2, node["prefix"]));
 }
 
 export function isVariableDeclaration(matchers) {
@@ -697,14 +695,14 @@ export function isVariableDeclaration(matchers) {
     return node => node && node.type === "VariableDeclaration";
   }
 
-  const _m0_ = matchers["kind"];
-  const _m1_ = matchers["declarations"];
+  const m0 = matchers["kind"],
+    m1 = matchers["declarations"];
 
   return node =>
     node &&
     node.type === "VariableDeclaration" &&
-    (!_m0_ || match(_m0_, node["kind"])) &&
-    (!_m1_ || match(_m1_, node["declarations"]));
+    (!m0 || match(m0, node["kind"])) &&
+    (!m1 || match(m1, node["declarations"]));
 }
 
 export function isVariableDeclarator(matchers) {
@@ -712,14 +710,14 @@ export function isVariableDeclarator(matchers) {
     return node => node && node.type === "VariableDeclarator";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["init"];
+  const m0 = matchers["id"],
+    m1 = matchers["init"];
 
   return node =>
     node &&
     node.type === "VariableDeclarator" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["init"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["init"]));
 }
 
 export function isWhileStatement(matchers) {
@@ -727,14 +725,14 @@ export function isWhileStatement(matchers) {
     return node => node && node.type === "WhileStatement";
   }
 
-  const _m0_ = matchers["test"];
-  const _m1_ = matchers["body"];
+  const m0 = matchers["test"],
+    m1 = matchers["body"];
 
   return node =>
     node &&
     node.type === "WhileStatement" &&
-    (!_m0_ || match(_m0_, node["test"])) &&
-    (!_m1_ || match(_m1_, node["body"]));
+    (!m0 || match(m0, node["test"])) &&
+    (!m1 || match(m1, node["body"]));
 }
 
 export function isWithStatement(matchers) {
@@ -742,14 +740,14 @@ export function isWithStatement(matchers) {
     return node => node && node.type === "WithStatement";
   }
 
-  const _m0_ = matchers["object"];
-  const _m1_ = matchers["body"];
+  const m0 = matchers["object"],
+    m1 = matchers["body"];
 
   return node =>
     node &&
     node.type === "WithStatement" &&
-    (!_m0_ || match(_m0_, node["object"])) &&
-    (!_m1_ || match(_m1_, node["body"]));
+    (!m0 || match(m0, node["object"])) &&
+    (!m1 || match(m1, node["body"]));
 }
 
 export function isAssignmentPattern(matchers) {
@@ -757,14 +755,14 @@ export function isAssignmentPattern(matchers) {
     return node => node && node.type === "AssignmentPattern";
   }
 
-  const _m0_ = matchers["left"];
-  const _m1_ = matchers["right"];
+  const m0 = matchers["left"],
+    m1 = matchers["right"];
 
   return node =>
     node &&
     node.type === "AssignmentPattern" &&
-    (!_m0_ || match(_m0_, node["left"])) &&
-    (!_m1_ || match(_m1_, node["right"]));
+    (!m0 || match(m0, node["left"])) &&
+    (!m1 || match(m1, node["right"]));
 }
 
 export function isArrayPattern(matchers) {
@@ -772,12 +770,13 @@ export function isArrayPattern(matchers) {
     return node => node && node.type === "ArrayPattern";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["elements"]
       : matchers;
+
   return node =>
-    node && node.type === "ArrayPattern" && match(matcher, node["elements"]);
+    node && node.type === "ArrayPattern" && match(m, node["elements"]);
 }
 
 export function isArrowFunctionExpression(matchers) {
@@ -785,16 +784,16 @@ export function isArrowFunctionExpression(matchers) {
     return node => node && node.type === "ArrowFunctionExpression";
   }
 
-  const _m0_ = matchers["params"];
-  const _m1_ = matchers["body"];
-  const _m2_ = matchers["async"];
+  const m0 = matchers["params"],
+    m1 = matchers["body"],
+    m2 = matchers["async"];
 
   return node =>
     node &&
     node.type === "ArrowFunctionExpression" &&
-    (!_m0_ || match(_m0_, node["params"])) &&
-    (!_m1_ || match(_m1_, node["body"])) &&
-    (!_m2_ || match(_m2_, node["async"]));
+    (!m0 || match(m0, node["params"])) &&
+    (!m1 || match(m1, node["body"])) &&
+    (!m2 || match(m2, node["async"]));
 }
 
 export function isClassBody(matchers) {
@@ -802,12 +801,12 @@ export function isClassBody(matchers) {
     return node => node && node.type === "ClassBody";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["body"]
       : matchers;
-  return node =>
-    node && node.type === "ClassBody" && match(matcher, node["body"]);
+
+  return node => node && node.type === "ClassBody" && match(m, node["body"]);
 }
 
 export function isClassDeclaration(matchers) {
@@ -815,18 +814,18 @@ export function isClassDeclaration(matchers) {
     return node => node && node.type === "ClassDeclaration";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["superClass"];
-  const _m2_ = matchers["body"];
-  const _m3_ = matchers["decorators"];
+  const m0 = matchers["id"],
+    m1 = matchers["superClass"],
+    m2 = matchers["body"],
+    m3 = matchers["decorators"];
 
   return node =>
     node &&
     node.type === "ClassDeclaration" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["superClass"])) &&
-    (!_m2_ || match(_m2_, node["body"])) &&
-    (!_m3_ || match(_m3_, node["decorators"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["superClass"])) &&
+    (!m2 || match(m2, node["body"])) &&
+    (!m3 || match(m3, node["decorators"]));
 }
 
 export function isClassExpression(matchers) {
@@ -834,18 +833,18 @@ export function isClassExpression(matchers) {
     return node => node && node.type === "ClassExpression";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["superClass"];
-  const _m2_ = matchers["body"];
-  const _m3_ = matchers["decorators"];
+  const m0 = matchers["id"],
+    m1 = matchers["superClass"],
+    m2 = matchers["body"],
+    m3 = matchers["decorators"];
 
   return node =>
     node &&
     node.type === "ClassExpression" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["superClass"])) &&
-    (!_m2_ || match(_m2_, node["body"])) &&
-    (!_m3_ || match(_m3_, node["decorators"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["superClass"])) &&
+    (!m2 || match(m2, node["body"])) &&
+    (!m3 || match(m3, node["decorators"]));
 }
 
 export function isExportAllDeclaration(matchers) {
@@ -853,14 +852,13 @@ export function isExportAllDeclaration(matchers) {
     return node => node && node.type === "ExportAllDeclaration";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["source"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "ExportAllDeclaration" &&
-    match(matcher, node["source"]);
+    node && node.type === "ExportAllDeclaration" && match(m, node["source"]);
 }
 
 export function isExportDefaultDeclaration(matchers) {
@@ -868,14 +866,15 @@ export function isExportDefaultDeclaration(matchers) {
     return node => node && node.type === "ExportDefaultDeclaration";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["declaration"]
       : matchers;
+
   return node =>
     node &&
     node.type === "ExportDefaultDeclaration" &&
-    match(matcher, node["declaration"]);
+    match(m, node["declaration"]);
 }
 
 export function isExportNamedDeclaration(matchers) {
@@ -883,16 +882,16 @@ export function isExportNamedDeclaration(matchers) {
     return node => node && node.type === "ExportNamedDeclaration";
   }
 
-  const _m0_ = matchers["declaration"];
-  const _m1_ = matchers["specifiers"];
-  const _m2_ = matchers["source"];
+  const m0 = matchers["declaration"],
+    m1 = matchers["specifiers"],
+    m2 = matchers["source"];
 
   return node =>
     node &&
     node.type === "ExportNamedDeclaration" &&
-    (!_m0_ || match(_m0_, node["declaration"])) &&
-    (!_m1_ || match(_m1_, node["specifiers"])) &&
-    (!_m2_ || match(_m2_, node["source"]));
+    (!m0 || match(m0, node["declaration"])) &&
+    (!m1 || match(m1, node["specifiers"])) &&
+    (!m2 || match(m2, node["source"]));
 }
 
 export function isExportSpecifier(matchers) {
@@ -900,14 +899,14 @@ export function isExportSpecifier(matchers) {
     return node => node && node.type === "ExportSpecifier";
   }
 
-  const _m0_ = matchers["local"];
-  const _m1_ = matchers["exported"];
+  const m0 = matchers["local"],
+    m1 = matchers["exported"];
 
   return node =>
     node &&
     node.type === "ExportSpecifier" &&
-    (!_m0_ || match(_m0_, node["local"])) &&
-    (!_m1_ || match(_m1_, node["exported"]));
+    (!m0 || match(m0, node["local"])) &&
+    (!m1 || match(m1, node["exported"]));
 }
 
 export function isForOfStatement(matchers) {
@@ -915,16 +914,16 @@ export function isForOfStatement(matchers) {
     return node => node && node.type === "ForOfStatement";
   }
 
-  const _m0_ = matchers["left"];
-  const _m1_ = matchers["right"];
-  const _m2_ = matchers["body"];
+  const m0 = matchers["left"],
+    m1 = matchers["right"],
+    m2 = matchers["body"];
 
   return node =>
     node &&
     node.type === "ForOfStatement" &&
-    (!_m0_ || match(_m0_, node["left"])) &&
-    (!_m1_ || match(_m1_, node["right"])) &&
-    (!_m2_ || match(_m2_, node["body"]));
+    (!m0 || match(m0, node["left"])) &&
+    (!m1 || match(m1, node["right"])) &&
+    (!m2 || match(m2, node["body"]));
 }
 
 export function isImportDeclaration(matchers) {
@@ -932,14 +931,14 @@ export function isImportDeclaration(matchers) {
     return node => node && node.type === "ImportDeclaration";
   }
 
-  const _m0_ = matchers["specifiers"];
-  const _m1_ = matchers["source"];
+  const m0 = matchers["specifiers"],
+    m1 = matchers["source"];
 
   return node =>
     node &&
     node.type === "ImportDeclaration" &&
-    (!_m0_ || match(_m0_, node["specifiers"])) &&
-    (!_m1_ || match(_m1_, node["source"]));
+    (!m0 || match(m0, node["specifiers"])) &&
+    (!m1 || match(m1, node["source"]));
 }
 
 export function isImportDefaultSpecifier(matchers) {
@@ -947,14 +946,13 @@ export function isImportDefaultSpecifier(matchers) {
     return node => node && node.type === "ImportDefaultSpecifier";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["local"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "ImportDefaultSpecifier" &&
-    match(matcher, node["local"]);
+    node && node.type === "ImportDefaultSpecifier" && match(m, node["local"]);
 }
 
 export function isImportNamespaceSpecifier(matchers) {
@@ -962,14 +960,13 @@ export function isImportNamespaceSpecifier(matchers) {
     return node => node && node.type === "ImportNamespaceSpecifier";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["local"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "ImportNamespaceSpecifier" &&
-    match(matcher, node["local"]);
+    node && node.type === "ImportNamespaceSpecifier" && match(m, node["local"]);
 }
 
 export function isImportSpecifier(matchers) {
@@ -977,14 +974,14 @@ export function isImportSpecifier(matchers) {
     return node => node && node.type === "ImportSpecifier";
   }
 
-  const _m0_ = matchers["local"];
-  const _m1_ = matchers["imported"];
+  const m0 = matchers["local"],
+    m1 = matchers["imported"];
 
   return node =>
     node &&
     node.type === "ImportSpecifier" &&
-    (!_m0_ || match(_m0_, node["local"])) &&
-    (!_m1_ || match(_m1_, node["imported"]));
+    (!m0 || match(m0, node["local"])) &&
+    (!m1 || match(m1, node["imported"]));
 }
 
 export function isMetaProperty(matchers) {
@@ -992,14 +989,14 @@ export function isMetaProperty(matchers) {
     return node => node && node.type === "MetaProperty";
   }
 
-  const _m0_ = matchers["meta"];
-  const _m1_ = matchers["property"];
+  const m0 = matchers["meta"],
+    m1 = matchers["property"];
 
   return node =>
     node &&
     node.type === "MetaProperty" &&
-    (!_m0_ || match(_m0_, node["meta"])) &&
-    (!_m1_ || match(_m1_, node["property"]));
+    (!m0 || match(m0, node["meta"])) &&
+    (!m1 || match(m1, node["property"]));
 }
 
 export function isClassMethod(matchers) {
@@ -1007,22 +1004,22 @@ export function isClassMethod(matchers) {
     return node => node && node.type === "ClassMethod";
   }
 
-  const _m0_ = matchers["kind"];
-  const _m1_ = matchers["key"];
-  const _m2_ = matchers["params"];
-  const _m3_ = matchers["body"];
-  const _m4_ = matchers["computed"];
-  const _m5_ = matchers["static"];
+  const m0 = matchers["kind"],
+    m1 = matchers["key"],
+    m2 = matchers["params"],
+    m3 = matchers["body"],
+    m4 = matchers["computed"],
+    m5 = matchers["static"];
 
   return node =>
     node &&
     node.type === "ClassMethod" &&
-    (!_m0_ || match(_m0_, node["kind"])) &&
-    (!_m1_ || match(_m1_, node["key"])) &&
-    (!_m2_ || match(_m2_, node["params"])) &&
-    (!_m3_ || match(_m3_, node["body"])) &&
-    (!_m4_ || match(_m4_, node["computed"])) &&
-    (!_m5_ || match(_m5_, node["static"]));
+    (!m0 || match(m0, node["kind"])) &&
+    (!m1 || match(m1, node["key"])) &&
+    (!m2 || match(m2, node["params"])) &&
+    (!m3 || match(m3, node["body"])) &&
+    (!m4 || match(m4, node["computed"])) &&
+    (!m5 || match(m5, node["static"]));
 }
 
 export function isObjectPattern(matchers) {
@@ -1030,12 +1027,13 @@ export function isObjectPattern(matchers) {
     return node => node && node.type === "ObjectPattern";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["properties"]
       : matchers;
+
   return node =>
-    node && node.type === "ObjectPattern" && match(matcher, node["properties"]);
+    node && node.type === "ObjectPattern" && match(m, node["properties"]);
 }
 
 export function isSpreadElement(matchers) {
@@ -1043,19 +1041,18 @@ export function isSpreadElement(matchers) {
     return node => node && node.type === "SpreadElement";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["argument"]
       : matchers;
+
   return node =>
-    node && node.type === "SpreadElement" && match(matcher, node["argument"]);
+    node && node.type === "SpreadElement" && match(m, node["argument"]);
 }
 
-function __isSuper(node) {
-  return node && node.type === "Super";
-}
+var f4;
 export function isSuper() {
-  return __isSuper;
+  return f4 || (f4 = node => node && node.type === "Super");
 }
 
 export function isTaggedTemplateExpression(matchers) {
@@ -1063,14 +1060,14 @@ export function isTaggedTemplateExpression(matchers) {
     return node => node && node.type === "TaggedTemplateExpression";
   }
 
-  const _m0_ = matchers["tag"];
-  const _m1_ = matchers["quasi"];
+  const m0 = matchers["tag"],
+    m1 = matchers["quasi"];
 
   return node =>
     node &&
     node.type === "TaggedTemplateExpression" &&
-    (!_m0_ || match(_m0_, node["tag"])) &&
-    (!_m1_ || match(_m1_, node["quasi"]));
+    (!m0 || match(m0, node["tag"])) &&
+    (!m1 || match(m1, node["quasi"]));
 }
 
 export function isTemplateElement(matchers) {
@@ -1078,14 +1075,14 @@ export function isTemplateElement(matchers) {
     return node => node && node.type === "TemplateElement";
   }
 
-  const _m0_ = matchers["value"];
-  const _m1_ = matchers["tail"];
+  const m0 = matchers["value"],
+    m1 = matchers["tail"];
 
   return node =>
     node &&
     node.type === "TemplateElement" &&
-    (!_m0_ || match(_m0_, node["value"])) &&
-    (!_m1_ || match(_m1_, node["tail"]));
+    (!m0 || match(m0, node["value"])) &&
+    (!m1 || match(m1, node["tail"]));
 }
 
 export function isTemplateLiteral(matchers) {
@@ -1093,14 +1090,14 @@ export function isTemplateLiteral(matchers) {
     return node => node && node.type === "TemplateLiteral";
   }
 
-  const _m0_ = matchers["quasis"];
-  const _m1_ = matchers["expressions"];
+  const m0 = matchers["quasis"],
+    m1 = matchers["expressions"];
 
   return node =>
     node &&
     node.type === "TemplateLiteral" &&
-    (!_m0_ || match(_m0_, node["quasis"])) &&
-    (!_m1_ || match(_m1_, node["expressions"]));
+    (!m0 || match(m0, node["quasis"])) &&
+    (!m1 || match(m1, node["expressions"]));
 }
 
 export function isYieldExpression(matchers) {
@@ -1108,21 +1105,19 @@ export function isYieldExpression(matchers) {
     return node => node && node.type === "YieldExpression";
   }
 
-  const _m0_ = matchers["argument"];
-  const _m1_ = matchers["delegate"];
+  const m0 = matchers["argument"],
+    m1 = matchers["delegate"];
 
   return node =>
     node &&
     node.type === "YieldExpression" &&
-    (!_m0_ || match(_m0_, node["argument"])) &&
-    (!_m1_ || match(_m1_, node["delegate"]));
+    (!m0 || match(m0, node["argument"])) &&
+    (!m1 || match(m1, node["delegate"]));
 }
 
-function __isAnyTypeAnnotation(node) {
-  return node && node.type === "AnyTypeAnnotation";
-}
+var f5;
 export function isAnyTypeAnnotation() {
-  return __isAnyTypeAnnotation;
+  return f5 || (f5 = node => node && node.type === "AnyTypeAnnotation");
 }
 
 export function isArrayTypeAnnotation(matchers) {
@@ -1130,21 +1125,20 @@ export function isArrayTypeAnnotation(matchers) {
     return node => node && node.type === "ArrayTypeAnnotation";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["elementType"]
       : matchers;
+
   return node =>
     node &&
     node.type === "ArrayTypeAnnotation" &&
-    match(matcher, node["elementType"]);
+    match(m, node["elementType"]);
 }
 
-function __isBooleanTypeAnnotation(node) {
-  return node && node.type === "BooleanTypeAnnotation";
-}
+var f6;
 export function isBooleanTypeAnnotation() {
-  return __isBooleanTypeAnnotation;
+  return f6 || (f6 = node => node && node.type === "BooleanTypeAnnotation");
 }
 
 export function isBooleanLiteralTypeAnnotation(matchers) {
@@ -1152,21 +1146,20 @@ export function isBooleanLiteralTypeAnnotation(matchers) {
     return node => node && node.type === "BooleanLiteralTypeAnnotation";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["value"]
       : matchers;
+
   return node =>
     node &&
     node.type === "BooleanLiteralTypeAnnotation" &&
-    match(matcher, node["value"]);
+    match(m, node["value"]);
 }
 
-function __isNullLiteralTypeAnnotation(node) {
-  return node && node.type === "NullLiteralTypeAnnotation";
-}
+var f7;
 export function isNullLiteralTypeAnnotation() {
-  return __isNullLiteralTypeAnnotation;
+  return f7 || (f7 = node => node && node.type === "NullLiteralTypeAnnotation");
 }
 
 export function isClassImplements(matchers) {
@@ -1174,14 +1167,14 @@ export function isClassImplements(matchers) {
     return node => node && node.type === "ClassImplements";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["typeParameters"];
+  const m0 = matchers["id"],
+    m1 = matchers["typeParameters"];
 
   return node =>
     node &&
     node.type === "ClassImplements" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["typeParameters"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["typeParameters"]));
 }
 
 export function isDeclareClass(matchers) {
@@ -1189,18 +1182,18 @@ export function isDeclareClass(matchers) {
     return node => node && node.type === "DeclareClass";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["typeParameters"];
-  const _m2_ = matchers["extends"];
-  const _m3_ = matchers["body"];
+  const m0 = matchers["id"],
+    m1 = matchers["typeParameters"],
+    m2 = matchers["extends"],
+    m3 = matchers["body"];
 
   return node =>
     node &&
     node.type === "DeclareClass" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["typeParameters"])) &&
-    (!_m2_ || match(_m2_, node["extends"])) &&
-    (!_m3_ || match(_m3_, node["body"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["typeParameters"])) &&
+    (!m2 || match(m2, node["extends"])) &&
+    (!m3 || match(m3, node["body"]));
 }
 
 export function isDeclareFunction(matchers) {
@@ -1208,12 +1201,13 @@ export function isDeclareFunction(matchers) {
     return node => node && node.type === "DeclareFunction";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["id"]
       : matchers;
+
   return node =>
-    node && node.type === "DeclareFunction" && match(matcher, node["id"]);
+    node && node.type === "DeclareFunction" && match(m, node["id"]);
 }
 
 export function isDeclareInterface(matchers) {
@@ -1221,18 +1215,18 @@ export function isDeclareInterface(matchers) {
     return node => node && node.type === "DeclareInterface";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["typeParameters"];
-  const _m2_ = matchers["extends"];
-  const _m3_ = matchers["body"];
+  const m0 = matchers["id"],
+    m1 = matchers["typeParameters"],
+    m2 = matchers["extends"],
+    m3 = matchers["body"];
 
   return node =>
     node &&
     node.type === "DeclareInterface" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["typeParameters"])) &&
-    (!_m2_ || match(_m2_, node["extends"])) &&
-    (!_m3_ || match(_m3_, node["body"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["typeParameters"])) &&
+    (!m2 || match(m2, node["extends"])) &&
+    (!m3 || match(m3, node["body"]));
 }
 
 export function isDeclareModule(matchers) {
@@ -1240,16 +1234,16 @@ export function isDeclareModule(matchers) {
     return node => node && node.type === "DeclareModule";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["body"];
-  const _m2_ = matchers["kind"];
+  const m0 = matchers["id"],
+    m1 = matchers["body"],
+    m2 = matchers["kind"];
 
   return node =>
     node &&
     node.type === "DeclareModule" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["body"])) &&
-    (!_m2_ || match(_m2_, node["kind"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["body"])) &&
+    (!m2 || match(m2, node["kind"]));
 }
 
 export function isDeclareModuleExports(matchers) {
@@ -1257,14 +1251,15 @@ export function isDeclareModuleExports(matchers) {
     return node => node && node.type === "DeclareModuleExports";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["typeAnnotation"]
       : matchers;
+
   return node =>
     node &&
     node.type === "DeclareModuleExports" &&
-    match(matcher, node["typeAnnotation"]);
+    match(m, node["typeAnnotation"]);
 }
 
 export function isDeclareTypeAlias(matchers) {
@@ -1272,16 +1267,16 @@ export function isDeclareTypeAlias(matchers) {
     return node => node && node.type === "DeclareTypeAlias";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["typeParameters"];
-  const _m2_ = matchers["right"];
+  const m0 = matchers["id"],
+    m1 = matchers["typeParameters"],
+    m2 = matchers["right"];
 
   return node =>
     node &&
     node.type === "DeclareTypeAlias" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["typeParameters"])) &&
-    (!_m2_ || match(_m2_, node["right"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["typeParameters"])) &&
+    (!m2 || match(m2, node["right"]));
 }
 
 export function isDeclareOpaqueType(matchers) {
@@ -1289,16 +1284,16 @@ export function isDeclareOpaqueType(matchers) {
     return node => node && node.type === "DeclareOpaqueType";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["typeParameters"];
-  const _m2_ = matchers["supertype"];
+  const m0 = matchers["id"],
+    m1 = matchers["typeParameters"],
+    m2 = matchers["supertype"];
 
   return node =>
     node &&
     node.type === "DeclareOpaqueType" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["typeParameters"])) &&
-    (!_m2_ || match(_m2_, node["supertype"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["typeParameters"])) &&
+    (!m2 || match(m2, node["supertype"]));
 }
 
 export function isDeclareVariable(matchers) {
@@ -1306,12 +1301,13 @@ export function isDeclareVariable(matchers) {
     return node => node && node.type === "DeclareVariable";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["id"]
       : matchers;
+
   return node =>
-    node && node.type === "DeclareVariable" && match(matcher, node["id"]);
+    node && node.type === "DeclareVariable" && match(m, node["id"]);
 }
 
 export function isDeclareExportDeclaration(matchers) {
@@ -1319,16 +1315,16 @@ export function isDeclareExportDeclaration(matchers) {
     return node => node && node.type === "DeclareExportDeclaration";
   }
 
-  const _m0_ = matchers["declaration"];
-  const _m1_ = matchers["specifiers"];
-  const _m2_ = matchers["source"];
+  const m0 = matchers["declaration"],
+    m1 = matchers["specifiers"],
+    m2 = matchers["source"];
 
   return node =>
     node &&
     node.type === "DeclareExportDeclaration" &&
-    (!_m0_ || match(_m0_, node["declaration"])) &&
-    (!_m1_ || match(_m1_, node["specifiers"])) &&
-    (!_m2_ || match(_m2_, node["source"]));
+    (!m0 || match(m0, node["declaration"])) &&
+    (!m1 || match(m1, node["specifiers"])) &&
+    (!m2 || match(m2, node["source"]));
 }
 
 export function isDeclareExportAllDeclaration(matchers) {
@@ -1336,14 +1332,15 @@ export function isDeclareExportAllDeclaration(matchers) {
     return node => node && node.type === "DeclareExportAllDeclaration";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["source"]
       : matchers;
+
   return node =>
     node &&
     node.type === "DeclareExportAllDeclaration" &&
-    match(matcher, node["source"]);
+    match(m, node["source"]);
 }
 
 export function isDeclaredPredicate(matchers) {
@@ -1351,19 +1348,18 @@ export function isDeclaredPredicate(matchers) {
     return node => node && node.type === "DeclaredPredicate";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["value"]
       : matchers;
+
   return node =>
-    node && node.type === "DeclaredPredicate" && match(matcher, node["value"]);
+    node && node.type === "DeclaredPredicate" && match(m, node["value"]);
 }
 
-function __isExistsTypeAnnotation(node) {
-  return node && node.type === "ExistsTypeAnnotation";
-}
+var f8;
 export function isExistsTypeAnnotation() {
-  return __isExistsTypeAnnotation;
+  return f8 || (f8 = node => node && node.type === "ExistsTypeAnnotation");
 }
 
 export function isFunctionTypeAnnotation(matchers) {
@@ -1371,18 +1367,18 @@ export function isFunctionTypeAnnotation(matchers) {
     return node => node && node.type === "FunctionTypeAnnotation";
   }
 
-  const _m0_ = matchers["typeParameters"];
-  const _m1_ = matchers["params"];
-  const _m2_ = matchers["rest"];
-  const _m3_ = matchers["returnType"];
+  const m0 = matchers["typeParameters"],
+    m1 = matchers["params"],
+    m2 = matchers["rest"],
+    m3 = matchers["returnType"];
 
   return node =>
     node &&
     node.type === "FunctionTypeAnnotation" &&
-    (!_m0_ || match(_m0_, node["typeParameters"])) &&
-    (!_m1_ || match(_m1_, node["params"])) &&
-    (!_m2_ || match(_m2_, node["rest"])) &&
-    (!_m3_ || match(_m3_, node["returnType"]));
+    (!m0 || match(m0, node["typeParameters"])) &&
+    (!m1 || match(m1, node["params"])) &&
+    (!m2 || match(m2, node["rest"])) &&
+    (!m3 || match(m3, node["returnType"]));
 }
 
 export function isFunctionTypeParam(matchers) {
@@ -1390,14 +1386,14 @@ export function isFunctionTypeParam(matchers) {
     return node => node && node.type === "FunctionTypeParam";
   }
 
-  const _m0_ = matchers["name"];
-  const _m1_ = matchers["typeAnnotation"];
+  const m0 = matchers["name"],
+    m1 = matchers["typeAnnotation"];
 
   return node =>
     node &&
     node.type === "FunctionTypeParam" &&
-    (!_m0_ || match(_m0_, node["name"])) &&
-    (!_m1_ || match(_m1_, node["typeAnnotation"]));
+    (!m0 || match(m0, node["name"])) &&
+    (!m1 || match(m1, node["typeAnnotation"]));
 }
 
 export function isGenericTypeAnnotation(matchers) {
@@ -1405,21 +1401,19 @@ export function isGenericTypeAnnotation(matchers) {
     return node => node && node.type === "GenericTypeAnnotation";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["typeParameters"];
+  const m0 = matchers["id"],
+    m1 = matchers["typeParameters"];
 
   return node =>
     node &&
     node.type === "GenericTypeAnnotation" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["typeParameters"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["typeParameters"]));
 }
 
-function __isInferredPredicate(node) {
-  return node && node.type === "InferredPredicate";
-}
+var f9;
 export function isInferredPredicate() {
-  return __isInferredPredicate;
+  return f9 || (f9 = node => node && node.type === "InferredPredicate");
 }
 
 export function isInterfaceExtends(matchers) {
@@ -1427,14 +1421,14 @@ export function isInterfaceExtends(matchers) {
     return node => node && node.type === "InterfaceExtends";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["typeParameters"];
+  const m0 = matchers["id"],
+    m1 = matchers["typeParameters"];
 
   return node =>
     node &&
     node.type === "InterfaceExtends" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["typeParameters"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["typeParameters"]));
 }
 
 export function isInterfaceDeclaration(matchers) {
@@ -1442,18 +1436,18 @@ export function isInterfaceDeclaration(matchers) {
     return node => node && node.type === "InterfaceDeclaration";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["typeParameters"];
-  const _m2_ = matchers["extends"];
-  const _m3_ = matchers["body"];
+  const m0 = matchers["id"],
+    m1 = matchers["typeParameters"],
+    m2 = matchers["extends"],
+    m3 = matchers["body"];
 
   return node =>
     node &&
     node.type === "InterfaceDeclaration" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["typeParameters"])) &&
-    (!_m2_ || match(_m2_, node["extends"])) &&
-    (!_m3_ || match(_m3_, node["body"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["typeParameters"])) &&
+    (!m2 || match(m2, node["extends"])) &&
+    (!m3 || match(m3, node["body"]));
 }
 
 export function isInterfaceTypeAnnotation(matchers) {
@@ -1461,14 +1455,14 @@ export function isInterfaceTypeAnnotation(matchers) {
     return node => node && node.type === "InterfaceTypeAnnotation";
   }
 
-  const _m0_ = matchers["extends"];
-  const _m1_ = matchers["body"];
+  const m0 = matchers["extends"],
+    m1 = matchers["body"];
 
   return node =>
     node &&
     node.type === "InterfaceTypeAnnotation" &&
-    (!_m0_ || match(_m0_, node["extends"])) &&
-    (!_m1_ || match(_m1_, node["body"]));
+    (!m0 || match(m0, node["extends"])) &&
+    (!m1 || match(m1, node["body"]));
 }
 
 export function isIntersectionTypeAnnotation(matchers) {
@@ -1476,28 +1470,25 @@ export function isIntersectionTypeAnnotation(matchers) {
     return node => node && node.type === "IntersectionTypeAnnotation";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["types"]
       : matchers;
+
   return node =>
     node &&
     node.type === "IntersectionTypeAnnotation" &&
-    match(matcher, node["types"]);
+    match(m, node["types"]);
 }
 
-function __isMixedTypeAnnotation(node) {
-  return node && node.type === "MixedTypeAnnotation";
-}
+var f10;
 export function isMixedTypeAnnotation() {
-  return __isMixedTypeAnnotation;
+  return f10 || (f10 = node => node && node.type === "MixedTypeAnnotation");
 }
 
-function __isEmptyTypeAnnotation(node) {
-  return node && node.type === "EmptyTypeAnnotation";
-}
+var f11;
 export function isEmptyTypeAnnotation() {
-  return __isEmptyTypeAnnotation;
+  return f11 || (f11 = node => node && node.type === "EmptyTypeAnnotation");
 }
 
 export function isNullableTypeAnnotation(matchers) {
@@ -1505,14 +1496,15 @@ export function isNullableTypeAnnotation(matchers) {
     return node => node && node.type === "NullableTypeAnnotation";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["typeAnnotation"]
       : matchers;
+
   return node =>
     node &&
     node.type === "NullableTypeAnnotation" &&
-    match(matcher, node["typeAnnotation"]);
+    match(m, node["typeAnnotation"]);
 }
 
 export function isNumberLiteralTypeAnnotation(matchers) {
@@ -1520,21 +1512,20 @@ export function isNumberLiteralTypeAnnotation(matchers) {
     return node => node && node.type === "NumberLiteralTypeAnnotation";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["value"]
       : matchers;
+
   return node =>
     node &&
     node.type === "NumberLiteralTypeAnnotation" &&
-    match(matcher, node["value"]);
+    match(m, node["value"]);
 }
 
-function __isNumberTypeAnnotation(node) {
-  return node && node.type === "NumberTypeAnnotation";
-}
+var f12;
 export function isNumberTypeAnnotation() {
-  return __isNumberTypeAnnotation;
+  return f12 || (f12 = node => node && node.type === "NumberTypeAnnotation");
 }
 
 export function isObjectTypeAnnotation(matchers) {
@@ -1542,20 +1533,20 @@ export function isObjectTypeAnnotation(matchers) {
     return node => node && node.type === "ObjectTypeAnnotation";
   }
 
-  const _m0_ = matchers["properties"];
-  const _m1_ = matchers["indexers"];
-  const _m2_ = matchers["callProperties"];
-  const _m3_ = matchers["internalSlots"];
-  const _m4_ = matchers["exact"];
+  const m0 = matchers["properties"],
+    m1 = matchers["indexers"],
+    m2 = matchers["callProperties"],
+    m3 = matchers["internalSlots"],
+    m4 = matchers["exact"];
 
   return node =>
     node &&
     node.type === "ObjectTypeAnnotation" &&
-    (!_m0_ || match(_m0_, node["properties"])) &&
-    (!_m1_ || match(_m1_, node["indexers"])) &&
-    (!_m2_ || match(_m2_, node["callProperties"])) &&
-    (!_m3_ || match(_m3_, node["internalSlots"])) &&
-    (!_m4_ || match(_m4_, node["exact"]));
+    (!m0 || match(m0, node["properties"])) &&
+    (!m1 || match(m1, node["indexers"])) &&
+    (!m2 || match(m2, node["callProperties"])) &&
+    (!m3 || match(m3, node["internalSlots"])) &&
+    (!m4 || match(m4, node["exact"]));
 }
 
 export function isObjectTypeInternalSlot(matchers) {
@@ -1563,20 +1554,20 @@ export function isObjectTypeInternalSlot(matchers) {
     return node => node && node.type === "ObjectTypeInternalSlot";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["value"];
-  const _m2_ = matchers["optional"];
-  const _m3_ = matchers["static"];
-  const _m4_ = matchers["method"];
+  const m0 = matchers["id"],
+    m1 = matchers["value"],
+    m2 = matchers["optional"],
+    m3 = matchers["static"],
+    m4 = matchers["method"];
 
   return node =>
     node &&
     node.type === "ObjectTypeInternalSlot" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["value"])) &&
-    (!_m2_ || match(_m2_, node["optional"])) &&
-    (!_m3_ || match(_m3_, node["static"])) &&
-    (!_m4_ || match(_m4_, node["method"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["value"])) &&
+    (!m2 || match(m2, node["optional"])) &&
+    (!m3 || match(m3, node["static"])) &&
+    (!m4 || match(m4, node["method"]));
 }
 
 export function isObjectTypeCallProperty(matchers) {
@@ -1584,14 +1575,13 @@ export function isObjectTypeCallProperty(matchers) {
     return node => node && node.type === "ObjectTypeCallProperty";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["value"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "ObjectTypeCallProperty" &&
-    match(matcher, node["value"]);
+    node && node.type === "ObjectTypeCallProperty" && match(m, node["value"]);
 }
 
 export function isObjectTypeIndexer(matchers) {
@@ -1599,18 +1589,18 @@ export function isObjectTypeIndexer(matchers) {
     return node => node && node.type === "ObjectTypeIndexer";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["key"];
-  const _m2_ = matchers["value"];
-  const _m3_ = matchers["variance"];
+  const m0 = matchers["id"],
+    m1 = matchers["key"],
+    m2 = matchers["value"],
+    m3 = matchers["variance"];
 
   return node =>
     node &&
     node.type === "ObjectTypeIndexer" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["key"])) &&
-    (!_m2_ || match(_m2_, node["value"])) &&
-    (!_m3_ || match(_m3_, node["variance"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["key"])) &&
+    (!m2 || match(m2, node["value"])) &&
+    (!m3 || match(m3, node["variance"]));
 }
 
 export function isObjectTypeProperty(matchers) {
@@ -1618,16 +1608,16 @@ export function isObjectTypeProperty(matchers) {
     return node => node && node.type === "ObjectTypeProperty";
   }
 
-  const _m0_ = matchers["key"];
-  const _m1_ = matchers["value"];
-  const _m2_ = matchers["variance"];
+  const m0 = matchers["key"],
+    m1 = matchers["value"],
+    m2 = matchers["variance"];
 
   return node =>
     node &&
     node.type === "ObjectTypeProperty" &&
-    (!_m0_ || match(_m0_, node["key"])) &&
-    (!_m1_ || match(_m1_, node["value"])) &&
-    (!_m2_ || match(_m2_, node["variance"]));
+    (!m0 || match(m0, node["key"])) &&
+    (!m1 || match(m1, node["value"])) &&
+    (!m2 || match(m2, node["variance"]));
 }
 
 export function isObjectTypeSpreadProperty(matchers) {
@@ -1635,14 +1625,15 @@ export function isObjectTypeSpreadProperty(matchers) {
     return node => node && node.type === "ObjectTypeSpreadProperty";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["argument"]
       : matchers;
+
   return node =>
     node &&
     node.type === "ObjectTypeSpreadProperty" &&
-    match(matcher, node["argument"]);
+    match(m, node["argument"]);
 }
 
 export function isOpaqueType(matchers) {
@@ -1650,18 +1641,18 @@ export function isOpaqueType(matchers) {
     return node => node && node.type === "OpaqueType";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["typeParameters"];
-  const _m2_ = matchers["supertype"];
-  const _m3_ = matchers["impltype"];
+  const m0 = matchers["id"],
+    m1 = matchers["typeParameters"],
+    m2 = matchers["supertype"],
+    m3 = matchers["impltype"];
 
   return node =>
     node &&
     node.type === "OpaqueType" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["typeParameters"])) &&
-    (!_m2_ || match(_m2_, node["supertype"])) &&
-    (!_m3_ || match(_m3_, node["impltype"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["typeParameters"])) &&
+    (!m2 || match(m2, node["supertype"])) &&
+    (!m3 || match(m3, node["impltype"]));
 }
 
 export function isQualifiedTypeIdentifier(matchers) {
@@ -1669,14 +1660,14 @@ export function isQualifiedTypeIdentifier(matchers) {
     return node => node && node.type === "QualifiedTypeIdentifier";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["qualification"];
+  const m0 = matchers["id"],
+    m1 = matchers["qualification"];
 
   return node =>
     node &&
     node.type === "QualifiedTypeIdentifier" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["qualification"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["qualification"]));
 }
 
 export function isStringLiteralTypeAnnotation(matchers) {
@@ -1684,28 +1675,25 @@ export function isStringLiteralTypeAnnotation(matchers) {
     return node => node && node.type === "StringLiteralTypeAnnotation";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["value"]
       : matchers;
+
   return node =>
     node &&
     node.type === "StringLiteralTypeAnnotation" &&
-    match(matcher, node["value"]);
+    match(m, node["value"]);
 }
 
-function __isStringTypeAnnotation(node) {
-  return node && node.type === "StringTypeAnnotation";
-}
+var f13;
 export function isStringTypeAnnotation() {
-  return __isStringTypeAnnotation;
+  return f13 || (f13 = node => node && node.type === "StringTypeAnnotation");
 }
 
-function __isThisTypeAnnotation(node) {
-  return node && node.type === "ThisTypeAnnotation";
-}
+var f14;
 export function isThisTypeAnnotation() {
-  return __isThisTypeAnnotation;
+  return f14 || (f14 = node => node && node.type === "ThisTypeAnnotation");
 }
 
 export function isTupleTypeAnnotation(matchers) {
@@ -1713,14 +1701,13 @@ export function isTupleTypeAnnotation(matchers) {
     return node => node && node.type === "TupleTypeAnnotation";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["types"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "TupleTypeAnnotation" &&
-    match(matcher, node["types"]);
+    node && node.type === "TupleTypeAnnotation" && match(m, node["types"]);
 }
 
 export function isTypeofTypeAnnotation(matchers) {
@@ -1728,14 +1715,13 @@ export function isTypeofTypeAnnotation(matchers) {
     return node => node && node.type === "TypeofTypeAnnotation";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["argument"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "TypeofTypeAnnotation" &&
-    match(matcher, node["argument"]);
+    node && node.type === "TypeofTypeAnnotation" && match(m, node["argument"]);
 }
 
 export function isTypeAlias(matchers) {
@@ -1743,16 +1729,16 @@ export function isTypeAlias(matchers) {
     return node => node && node.type === "TypeAlias";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["typeParameters"];
-  const _m2_ = matchers["right"];
+  const m0 = matchers["id"],
+    m1 = matchers["typeParameters"],
+    m2 = matchers["right"];
 
   return node =>
     node &&
     node.type === "TypeAlias" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["typeParameters"])) &&
-    (!_m2_ || match(_m2_, node["right"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["typeParameters"])) &&
+    (!m2 || match(m2, node["right"]));
 }
 
 export function isTypeAnnotation(matchers) {
@@ -1760,14 +1746,13 @@ export function isTypeAnnotation(matchers) {
     return node => node && node.type === "TypeAnnotation";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["typeAnnotation"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "TypeAnnotation" &&
-    match(matcher, node["typeAnnotation"]);
+    node && node.type === "TypeAnnotation" && match(m, node["typeAnnotation"]);
 }
 
 export function isTypeCastExpression(matchers) {
@@ -1775,14 +1760,14 @@ export function isTypeCastExpression(matchers) {
     return node => node && node.type === "TypeCastExpression";
   }
 
-  const _m0_ = matchers["expression"];
-  const _m1_ = matchers["typeAnnotation"];
+  const m0 = matchers["expression"],
+    m1 = matchers["typeAnnotation"];
 
   return node =>
     node &&
     node.type === "TypeCastExpression" &&
-    (!_m0_ || match(_m0_, node["expression"])) &&
-    (!_m1_ || match(_m1_, node["typeAnnotation"]));
+    (!m0 || match(m0, node["expression"])) &&
+    (!m1 || match(m1, node["typeAnnotation"]));
 }
 
 export function isTypeParameter(matchers) {
@@ -1790,16 +1775,16 @@ export function isTypeParameter(matchers) {
     return node => node && node.type === "TypeParameter";
   }
 
-  const _m0_ = matchers["bound"];
-  const _m1_ = matchers["default"];
-  const _m2_ = matchers["variance"];
+  const m0 = matchers["bound"],
+    m1 = matchers["default"],
+    m2 = matchers["variance"];
 
   return node =>
     node &&
     node.type === "TypeParameter" &&
-    (!_m0_ || match(_m0_, node["bound"])) &&
-    (!_m1_ || match(_m1_, node["default"])) &&
-    (!_m2_ || match(_m2_, node["variance"]));
+    (!m0 || match(m0, node["bound"])) &&
+    (!m1 || match(m1, node["default"])) &&
+    (!m2 || match(m2, node["variance"]));
 }
 
 export function isTypeParameterDeclaration(matchers) {
@@ -1807,14 +1792,15 @@ export function isTypeParameterDeclaration(matchers) {
     return node => node && node.type === "TypeParameterDeclaration";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["params"]
       : matchers;
+
   return node =>
     node &&
     node.type === "TypeParameterDeclaration" &&
-    match(matcher, node["params"]);
+    match(m, node["params"]);
 }
 
 export function isTypeParameterInstantiation(matchers) {
@@ -1822,14 +1808,15 @@ export function isTypeParameterInstantiation(matchers) {
     return node => node && node.type === "TypeParameterInstantiation";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["params"]
       : matchers;
+
   return node =>
     node &&
     node.type === "TypeParameterInstantiation" &&
-    match(matcher, node["params"]);
+    match(m, node["params"]);
 }
 
 export function isUnionTypeAnnotation(matchers) {
@@ -1837,14 +1824,13 @@ export function isUnionTypeAnnotation(matchers) {
     return node => node && node.type === "UnionTypeAnnotation";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["types"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "UnionTypeAnnotation" &&
-    match(matcher, node["types"]);
+    node && node.type === "UnionTypeAnnotation" && match(m, node["types"]);
 }
 
 export function isVariance(matchers) {
@@ -1852,19 +1838,17 @@ export function isVariance(matchers) {
     return node => node && node.type === "Variance";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["kind"]
       : matchers;
-  return node =>
-    node && node.type === "Variance" && match(matcher, node["kind"]);
+
+  return node => node && node.type === "Variance" && match(m, node["kind"]);
 }
 
-function __isVoidTypeAnnotation(node) {
-  return node && node.type === "VoidTypeAnnotation";
-}
+var f15;
 export function isVoidTypeAnnotation() {
-  return __isVoidTypeAnnotation;
+  return f15 || (f15 = node => node && node.type === "VoidTypeAnnotation");
 }
 
 export function isJSXAttribute(matchers) {
@@ -1872,14 +1856,14 @@ export function isJSXAttribute(matchers) {
     return node => node && node.type === "JSXAttribute";
   }
 
-  const _m0_ = matchers["name"];
-  const _m1_ = matchers["value"];
+  const m0 = matchers["name"],
+    m1 = matchers["value"];
 
   return node =>
     node &&
     node.type === "JSXAttribute" &&
-    (!_m0_ || match(_m0_, node["name"])) &&
-    (!_m1_ || match(_m1_, node["value"]));
+    (!m0 || match(m0, node["name"])) &&
+    (!m1 || match(m1, node["value"]));
 }
 
 export function isJSXClosingElement(matchers) {
@@ -1887,12 +1871,13 @@ export function isJSXClosingElement(matchers) {
     return node => node && node.type === "JSXClosingElement";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["name"]
       : matchers;
+
   return node =>
-    node && node.type === "JSXClosingElement" && match(matcher, node["name"]);
+    node && node.type === "JSXClosingElement" && match(m, node["name"]);
 }
 
 export function isJSXElement(matchers) {
@@ -1900,25 +1885,23 @@ export function isJSXElement(matchers) {
     return node => node && node.type === "JSXElement";
   }
 
-  const _m0_ = matchers["openingElement"];
-  const _m1_ = matchers["closingElement"];
-  const _m2_ = matchers["children"];
-  const _m3_ = matchers["selfClosing"];
+  const m0 = matchers["openingElement"],
+    m1 = matchers["closingElement"],
+    m2 = matchers["children"],
+    m3 = matchers["selfClosing"];
 
   return node =>
     node &&
     node.type === "JSXElement" &&
-    (!_m0_ || match(_m0_, node["openingElement"])) &&
-    (!_m1_ || match(_m1_, node["closingElement"])) &&
-    (!_m2_ || match(_m2_, node["children"])) &&
-    (!_m3_ || match(_m3_, node["selfClosing"]));
+    (!m0 || match(m0, node["openingElement"])) &&
+    (!m1 || match(m1, node["closingElement"])) &&
+    (!m2 || match(m2, node["children"])) &&
+    (!m3 || match(m3, node["selfClosing"]));
 }
 
-function __isJSXEmptyExpression(node) {
-  return node && node.type === "JSXEmptyExpression";
-}
+var f16;
 export function isJSXEmptyExpression() {
-  return __isJSXEmptyExpression;
+  return f16 || (f16 = node => node && node.type === "JSXEmptyExpression");
 }
 
 export function isJSXExpressionContainer(matchers) {
@@ -1926,14 +1909,15 @@ export function isJSXExpressionContainer(matchers) {
     return node => node && node.type === "JSXExpressionContainer";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["expression"]
       : matchers;
+
   return node =>
     node &&
     node.type === "JSXExpressionContainer" &&
-    match(matcher, node["expression"]);
+    match(m, node["expression"]);
 }
 
 export function isJSXSpreadChild(matchers) {
@@ -1941,14 +1925,13 @@ export function isJSXSpreadChild(matchers) {
     return node => node && node.type === "JSXSpreadChild";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["expression"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "JSXSpreadChild" &&
-    match(matcher, node["expression"]);
+    node && node.type === "JSXSpreadChild" && match(m, node["expression"]);
 }
 
 export function isJSXIdentifier(matchers) {
@@ -1956,12 +1939,13 @@ export function isJSXIdentifier(matchers) {
     return node => node && node.type === "JSXIdentifier";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["name"]
       : matchers;
+
   return node =>
-    node && node.type === "JSXIdentifier" && match(matcher, node["name"]);
+    node && node.type === "JSXIdentifier" && match(m, node["name"]);
 }
 
 export function isJSXMemberExpression(matchers) {
@@ -1969,14 +1953,14 @@ export function isJSXMemberExpression(matchers) {
     return node => node && node.type === "JSXMemberExpression";
   }
 
-  const _m0_ = matchers["object"];
-  const _m1_ = matchers["property"];
+  const m0 = matchers["object"],
+    m1 = matchers["property"];
 
   return node =>
     node &&
     node.type === "JSXMemberExpression" &&
-    (!_m0_ || match(_m0_, node["object"])) &&
-    (!_m1_ || match(_m1_, node["property"]));
+    (!m0 || match(m0, node["object"])) &&
+    (!m1 || match(m1, node["property"]));
 }
 
 export function isJSXNamespacedName(matchers) {
@@ -1984,14 +1968,14 @@ export function isJSXNamespacedName(matchers) {
     return node => node && node.type === "JSXNamespacedName";
   }
 
-  const _m0_ = matchers["namespace"];
-  const _m1_ = matchers["name"];
+  const m0 = matchers["namespace"],
+    m1 = matchers["name"];
 
   return node =>
     node &&
     node.type === "JSXNamespacedName" &&
-    (!_m0_ || match(_m0_, node["namespace"])) &&
-    (!_m1_ || match(_m1_, node["name"]));
+    (!m0 || match(m0, node["namespace"])) &&
+    (!m1 || match(m1, node["name"]));
 }
 
 export function isJSXOpeningElement(matchers) {
@@ -1999,16 +1983,16 @@ export function isJSXOpeningElement(matchers) {
     return node => node && node.type === "JSXOpeningElement";
   }
 
-  const _m0_ = matchers["name"];
-  const _m1_ = matchers["attributes"];
-  const _m2_ = matchers["selfClosing"];
+  const m0 = matchers["name"],
+    m1 = matchers["attributes"],
+    m2 = matchers["selfClosing"];
 
   return node =>
     node &&
     node.type === "JSXOpeningElement" &&
-    (!_m0_ || match(_m0_, node["name"])) &&
-    (!_m1_ || match(_m1_, node["attributes"])) &&
-    (!_m2_ || match(_m2_, node["selfClosing"]));
+    (!m0 || match(m0, node["name"])) &&
+    (!m1 || match(m1, node["attributes"])) &&
+    (!m2 || match(m2, node["selfClosing"]));
 }
 
 export function isJSXSpreadAttribute(matchers) {
@@ -2016,14 +2000,13 @@ export function isJSXSpreadAttribute(matchers) {
     return node => node && node.type === "JSXSpreadAttribute";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["argument"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "JSXSpreadAttribute" &&
-    match(matcher, node["argument"]);
+    node && node.type === "JSXSpreadAttribute" && match(m, node["argument"]);
 }
 
 export function isJSXText(matchers) {
@@ -2031,12 +2014,12 @@ export function isJSXText(matchers) {
     return node => node && node.type === "JSXText";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["value"]
       : matchers;
-  return node =>
-    node && node.type === "JSXText" && match(matcher, node["value"]);
+
+  return node => node && node.type === "JSXText" && match(m, node["value"]);
 }
 
 export function isJSXFragment(matchers) {
@@ -2044,37 +2027,31 @@ export function isJSXFragment(matchers) {
     return node => node && node.type === "JSXFragment";
   }
 
-  const _m0_ = matchers["openingFragment"];
-  const _m1_ = matchers["closingFragment"];
-  const _m2_ = matchers["children"];
+  const m0 = matchers["openingFragment"],
+    m1 = matchers["closingFragment"],
+    m2 = matchers["children"];
 
   return node =>
     node &&
     node.type === "JSXFragment" &&
-    (!_m0_ || match(_m0_, node["openingFragment"])) &&
-    (!_m1_ || match(_m1_, node["closingFragment"])) &&
-    (!_m2_ || match(_m2_, node["children"]));
+    (!m0 || match(m0, node["openingFragment"])) &&
+    (!m1 || match(m1, node["closingFragment"])) &&
+    (!m2 || match(m2, node["children"]));
 }
 
-function __isJSXOpeningFragment(node) {
-  return node && node.type === "JSXOpeningFragment";
-}
+var f17;
 export function isJSXOpeningFragment() {
-  return __isJSXOpeningFragment;
+  return f17 || (f17 = node => node && node.type === "JSXOpeningFragment");
 }
 
-function __isJSXClosingFragment(node) {
-  return node && node.type === "JSXClosingFragment";
-}
+var f18;
 export function isJSXClosingFragment() {
-  return __isJSXClosingFragment;
+  return f18 || (f18 = node => node && node.type === "JSXClosingFragment");
 }
 
-function __isNoop(node) {
-  return node && node.type === "Noop";
-}
+var f19;
 export function isNoop() {
-  return __isNoop;
+  return f19 || (f19 = node => node && node.type === "Noop");
 }
 
 export function isParenthesizedExpression(matchers) {
@@ -2082,14 +2059,15 @@ export function isParenthesizedExpression(matchers) {
     return node => node && node.type === "ParenthesizedExpression";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["expression"]
       : matchers;
+
   return node =>
     node &&
     node.type === "ParenthesizedExpression" &&
-    match(matcher, node["expression"]);
+    match(m, node["expression"]);
 }
 
 export function isAwaitExpression(matchers) {
@@ -2097,12 +2075,13 @@ export function isAwaitExpression(matchers) {
     return node => node && node.type === "AwaitExpression";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["argument"]
       : matchers;
+
   return node =>
-    node && node.type === "AwaitExpression" && match(matcher, node["argument"]);
+    node && node.type === "AwaitExpression" && match(m, node["argument"]);
 }
 
 export function isBindExpression(matchers) {
@@ -2110,14 +2089,14 @@ export function isBindExpression(matchers) {
     return node => node && node.type === "BindExpression";
   }
 
-  const _m0_ = matchers["object"];
-  const _m1_ = matchers["callee"];
+  const m0 = matchers["object"],
+    m1 = matchers["callee"];
 
   return node =>
     node &&
     node.type === "BindExpression" &&
-    (!_m0_ || match(_m0_, node["object"])) &&
-    (!_m1_ || match(_m1_, node["callee"]));
+    (!m0 || match(m0, node["object"])) &&
+    (!m1 || match(m1, node["callee"]));
 }
 
 export function isClassProperty(matchers) {
@@ -2125,20 +2104,20 @@ export function isClassProperty(matchers) {
     return node => node && node.type === "ClassProperty";
   }
 
-  const _m0_ = matchers["key"];
-  const _m1_ = matchers["value"];
-  const _m2_ = matchers["typeAnnotation"];
-  const _m3_ = matchers["decorators"];
-  const _m4_ = matchers["computed"];
+  const m0 = matchers["key"],
+    m1 = matchers["value"],
+    m2 = matchers["typeAnnotation"],
+    m3 = matchers["decorators"],
+    m4 = matchers["computed"];
 
   return node =>
     node &&
     node.type === "ClassProperty" &&
-    (!_m0_ || match(_m0_, node["key"])) &&
-    (!_m1_ || match(_m1_, node["value"])) &&
-    (!_m2_ || match(_m2_, node["typeAnnotation"])) &&
-    (!_m3_ || match(_m3_, node["decorators"])) &&
-    (!_m4_ || match(_m4_, node["computed"]));
+    (!m0 || match(m0, node["key"])) &&
+    (!m1 || match(m1, node["value"])) &&
+    (!m2 || match(m2, node["typeAnnotation"])) &&
+    (!m3 || match(m3, node["decorators"])) &&
+    (!m4 || match(m4, node["computed"]));
 }
 
 export function isOptionalMemberExpression(matchers) {
@@ -2146,18 +2125,18 @@ export function isOptionalMemberExpression(matchers) {
     return node => node && node.type === "OptionalMemberExpression";
   }
 
-  const _m0_ = matchers["object"];
-  const _m1_ = matchers["property"];
-  const _m2_ = matchers["computed"];
-  const _m3_ = matchers["optional"];
+  const m0 = matchers["object"],
+    m1 = matchers["property"],
+    m2 = matchers["computed"],
+    m3 = matchers["optional"];
 
   return node =>
     node &&
     node.type === "OptionalMemberExpression" &&
-    (!_m0_ || match(_m0_, node["object"])) &&
-    (!_m1_ || match(_m1_, node["property"])) &&
-    (!_m2_ || match(_m2_, node["computed"])) &&
-    (!_m3_ || match(_m3_, node["optional"]));
+    (!m0 || match(m0, node["object"])) &&
+    (!m1 || match(m1, node["property"])) &&
+    (!m2 || match(m2, node["computed"])) &&
+    (!m3 || match(m3, node["optional"]));
 }
 
 export function isOptionalCallExpression(matchers) {
@@ -2165,16 +2144,16 @@ export function isOptionalCallExpression(matchers) {
     return node => node && node.type === "OptionalCallExpression";
   }
 
-  const _m0_ = matchers["callee"];
-  const _m1_ = matchers["arguments"];
-  const _m2_ = matchers["optional"];
+  const m0 = matchers["callee"],
+    m1 = matchers["arguments"],
+    m2 = matchers["optional"];
 
   return node =>
     node &&
     node.type === "OptionalCallExpression" &&
-    (!_m0_ || match(_m0_, node["callee"])) &&
-    (!_m1_ || match(_m1_, node["arguments"])) &&
-    (!_m2_ || match(_m2_, node["optional"]));
+    (!m0 || match(m0, node["callee"])) &&
+    (!m1 || match(m1, node["arguments"])) &&
+    (!m2 || match(m2, node["optional"]));
 }
 
 export function isClassPrivateProperty(matchers) {
@@ -2182,21 +2161,19 @@ export function isClassPrivateProperty(matchers) {
     return node => node && node.type === "ClassPrivateProperty";
   }
 
-  const _m0_ = matchers["key"];
-  const _m1_ = matchers["value"];
+  const m0 = matchers["key"],
+    m1 = matchers["value"];
 
   return node =>
     node &&
     node.type === "ClassPrivateProperty" &&
-    (!_m0_ || match(_m0_, node["key"])) &&
-    (!_m1_ || match(_m1_, node["value"]));
+    (!m0 || match(m0, node["key"])) &&
+    (!m1 || match(m1, node["value"]));
 }
 
-function __isImport(node) {
-  return node && node.type === "Import";
-}
+var f20;
 export function isImport() {
-  return __isImport;
+  return f20 || (f20 = node => node && node.type === "Import");
 }
 
 export function isDecorator(matchers) {
@@ -2204,12 +2181,13 @@ export function isDecorator(matchers) {
     return node => node && node.type === "Decorator";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["expression"]
       : matchers;
+
   return node =>
-    node && node.type === "Decorator" && match(matcher, node["expression"]);
+    node && node.type === "Decorator" && match(m, node["expression"]);
 }
 
 export function isDoExpression(matchers) {
@@ -2217,12 +2195,12 @@ export function isDoExpression(matchers) {
     return node => node && node.type === "DoExpression";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["body"]
       : matchers;
-  return node =>
-    node && node.type === "DoExpression" && match(matcher, node["body"]);
+
+  return node => node && node.type === "DoExpression" && match(m, node["body"]);
 }
 
 export function isExportDefaultSpecifier(matchers) {
@@ -2230,14 +2208,15 @@ export function isExportDefaultSpecifier(matchers) {
     return node => node && node.type === "ExportDefaultSpecifier";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["exported"]
       : matchers;
+
   return node =>
     node &&
     node.type === "ExportDefaultSpecifier" &&
-    match(matcher, node["exported"]);
+    match(m, node["exported"]);
 }
 
 export function isExportNamespaceSpecifier(matchers) {
@@ -2245,14 +2224,15 @@ export function isExportNamespaceSpecifier(matchers) {
     return node => node && node.type === "ExportNamespaceSpecifier";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["exported"]
       : matchers;
+
   return node =>
     node &&
     node.type === "ExportNamespaceSpecifier" &&
-    match(matcher, node["exported"]);
+    match(m, node["exported"]);
 }
 
 export function isPrivateName(matchers) {
@@ -2260,12 +2240,12 @@ export function isPrivateName(matchers) {
     return node => node && node.type === "PrivateName";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["id"]
       : matchers;
-  return node =>
-    node && node.type === "PrivateName" && match(matcher, node["id"]);
+
+  return node => node && node.type === "PrivateName" && match(m, node["id"]);
 }
 
 export function isBigIntLiteral(matchers) {
@@ -2273,12 +2253,13 @@ export function isBigIntLiteral(matchers) {
     return node => node && node.type === "BigIntLiteral";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["value"]
       : matchers;
+
   return node =>
-    node && node.type === "BigIntLiteral" && match(matcher, node["value"]);
+    node && node.type === "BigIntLiteral" && match(m, node["value"]);
 }
 
 export function isTSParameterProperty(matchers) {
@@ -2286,14 +2267,13 @@ export function isTSParameterProperty(matchers) {
     return node => node && node.type === "TSParameterProperty";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["parameter"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "TSParameterProperty" &&
-    match(matcher, node["parameter"]);
+    node && node.type === "TSParameterProperty" && match(m, node["parameter"]);
 }
 
 export function isTSDeclareFunction(matchers) {
@@ -2301,18 +2281,18 @@ export function isTSDeclareFunction(matchers) {
     return node => node && node.type === "TSDeclareFunction";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["typeParameters"];
-  const _m2_ = matchers["params"];
-  const _m3_ = matchers["returnType"];
+  const m0 = matchers["id"],
+    m1 = matchers["typeParameters"],
+    m2 = matchers["params"],
+    m3 = matchers["returnType"];
 
   return node =>
     node &&
     node.type === "TSDeclareFunction" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["typeParameters"])) &&
-    (!_m2_ || match(_m2_, node["params"])) &&
-    (!_m3_ || match(_m3_, node["returnType"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["typeParameters"])) &&
+    (!m2 || match(m2, node["params"])) &&
+    (!m3 || match(m3, node["returnType"]));
 }
 
 export function isTSDeclareMethod(matchers) {
@@ -2320,20 +2300,20 @@ export function isTSDeclareMethod(matchers) {
     return node => node && node.type === "TSDeclareMethod";
   }
 
-  const _m0_ = matchers["decorators"];
-  const _m1_ = matchers["key"];
-  const _m2_ = matchers["typeParameters"];
-  const _m3_ = matchers["params"];
-  const _m4_ = matchers["returnType"];
+  const m0 = matchers["decorators"],
+    m1 = matchers["key"],
+    m2 = matchers["typeParameters"],
+    m3 = matchers["params"],
+    m4 = matchers["returnType"];
 
   return node =>
     node &&
     node.type === "TSDeclareMethod" &&
-    (!_m0_ || match(_m0_, node["decorators"])) &&
-    (!_m1_ || match(_m1_, node["key"])) &&
-    (!_m2_ || match(_m2_, node["typeParameters"])) &&
-    (!_m3_ || match(_m3_, node["params"])) &&
-    (!_m4_ || match(_m4_, node["returnType"]));
+    (!m0 || match(m0, node["decorators"])) &&
+    (!m1 || match(m1, node["key"])) &&
+    (!m2 || match(m2, node["typeParameters"])) &&
+    (!m3 || match(m3, node["params"])) &&
+    (!m4 || match(m4, node["returnType"]));
 }
 
 export function isTSQualifiedName(matchers) {
@@ -2341,14 +2321,14 @@ export function isTSQualifiedName(matchers) {
     return node => node && node.type === "TSQualifiedName";
   }
 
-  const _m0_ = matchers["left"];
-  const _m1_ = matchers["right"];
+  const m0 = matchers["left"],
+    m1 = matchers["right"];
 
   return node =>
     node &&
     node.type === "TSQualifiedName" &&
-    (!_m0_ || match(_m0_, node["left"])) &&
-    (!_m1_ || match(_m1_, node["right"]));
+    (!m0 || match(m0, node["left"])) &&
+    (!m1 || match(m1, node["right"]));
 }
 
 export function isTSCallSignatureDeclaration(matchers) {
@@ -2356,16 +2336,16 @@ export function isTSCallSignatureDeclaration(matchers) {
     return node => node && node.type === "TSCallSignatureDeclaration";
   }
 
-  const _m0_ = matchers["typeParameters"];
-  const _m1_ = matchers["parameters"];
-  const _m2_ = matchers["typeAnnotation"];
+  const m0 = matchers["typeParameters"],
+    m1 = matchers["parameters"],
+    m2 = matchers["typeAnnotation"];
 
   return node =>
     node &&
     node.type === "TSCallSignatureDeclaration" &&
-    (!_m0_ || match(_m0_, node["typeParameters"])) &&
-    (!_m1_ || match(_m1_, node["parameters"])) &&
-    (!_m2_ || match(_m2_, node["typeAnnotation"]));
+    (!m0 || match(m0, node["typeParameters"])) &&
+    (!m1 || match(m1, node["parameters"])) &&
+    (!m2 || match(m2, node["typeAnnotation"]));
 }
 
 export function isTSConstructSignatureDeclaration(matchers) {
@@ -2373,16 +2353,16 @@ export function isTSConstructSignatureDeclaration(matchers) {
     return node => node && node.type === "TSConstructSignatureDeclaration";
   }
 
-  const _m0_ = matchers["typeParameters"];
-  const _m1_ = matchers["parameters"];
-  const _m2_ = matchers["typeAnnotation"];
+  const m0 = matchers["typeParameters"],
+    m1 = matchers["parameters"],
+    m2 = matchers["typeAnnotation"];
 
   return node =>
     node &&
     node.type === "TSConstructSignatureDeclaration" &&
-    (!_m0_ || match(_m0_, node["typeParameters"])) &&
-    (!_m1_ || match(_m1_, node["parameters"])) &&
-    (!_m2_ || match(_m2_, node["typeAnnotation"]));
+    (!m0 || match(m0, node["typeParameters"])) &&
+    (!m1 || match(m1, node["parameters"])) &&
+    (!m2 || match(m2, node["typeAnnotation"]));
 }
 
 export function isTSPropertySignature(matchers) {
@@ -2390,16 +2370,16 @@ export function isTSPropertySignature(matchers) {
     return node => node && node.type === "TSPropertySignature";
   }
 
-  const _m0_ = matchers["key"];
-  const _m1_ = matchers["typeAnnotation"];
-  const _m2_ = matchers["initializer"];
+  const m0 = matchers["key"],
+    m1 = matchers["typeAnnotation"],
+    m2 = matchers["initializer"];
 
   return node =>
     node &&
     node.type === "TSPropertySignature" &&
-    (!_m0_ || match(_m0_, node["key"])) &&
-    (!_m1_ || match(_m1_, node["typeAnnotation"])) &&
-    (!_m2_ || match(_m2_, node["initializer"]));
+    (!m0 || match(m0, node["key"])) &&
+    (!m1 || match(m1, node["typeAnnotation"])) &&
+    (!m2 || match(m2, node["initializer"]));
 }
 
 export function isTSMethodSignature(matchers) {
@@ -2407,18 +2387,18 @@ export function isTSMethodSignature(matchers) {
     return node => node && node.type === "TSMethodSignature";
   }
 
-  const _m0_ = matchers["key"];
-  const _m1_ = matchers["typeParameters"];
-  const _m2_ = matchers["parameters"];
-  const _m3_ = matchers["typeAnnotation"];
+  const m0 = matchers["key"],
+    m1 = matchers["typeParameters"],
+    m2 = matchers["parameters"],
+    m3 = matchers["typeAnnotation"];
 
   return node =>
     node &&
     node.type === "TSMethodSignature" &&
-    (!_m0_ || match(_m0_, node["key"])) &&
-    (!_m1_ || match(_m1_, node["typeParameters"])) &&
-    (!_m2_ || match(_m2_, node["parameters"])) &&
-    (!_m3_ || match(_m3_, node["typeAnnotation"]));
+    (!m0 || match(m0, node["key"])) &&
+    (!m1 || match(m1, node["typeParameters"])) &&
+    (!m2 || match(m2, node["parameters"])) &&
+    (!m3 || match(m3, node["typeAnnotation"]));
 }
 
 export function isTSIndexSignature(matchers) {
@@ -2426,91 +2406,69 @@ export function isTSIndexSignature(matchers) {
     return node => node && node.type === "TSIndexSignature";
   }
 
-  const _m0_ = matchers["parameters"];
-  const _m1_ = matchers["typeAnnotation"];
+  const m0 = matchers["parameters"],
+    m1 = matchers["typeAnnotation"];
 
   return node =>
     node &&
     node.type === "TSIndexSignature" &&
-    (!_m0_ || match(_m0_, node["parameters"])) &&
-    (!_m1_ || match(_m1_, node["typeAnnotation"]));
+    (!m0 || match(m0, node["parameters"])) &&
+    (!m1 || match(m1, node["typeAnnotation"]));
 }
 
-function __isTSAnyKeyword(node) {
-  return node && node.type === "TSAnyKeyword";
-}
+var f21;
 export function isTSAnyKeyword() {
-  return __isTSAnyKeyword;
+  return f21 || (f21 = node => node && node.type === "TSAnyKeyword");
 }
 
-function __isTSNumberKeyword(node) {
-  return node && node.type === "TSNumberKeyword";
-}
+var f22;
 export function isTSNumberKeyword() {
-  return __isTSNumberKeyword;
+  return f22 || (f22 = node => node && node.type === "TSNumberKeyword");
 }
 
-function __isTSObjectKeyword(node) {
-  return node && node.type === "TSObjectKeyword";
-}
+var f23;
 export function isTSObjectKeyword() {
-  return __isTSObjectKeyword;
+  return f23 || (f23 = node => node && node.type === "TSObjectKeyword");
 }
 
-function __isTSBooleanKeyword(node) {
-  return node && node.type === "TSBooleanKeyword";
-}
+var f24;
 export function isTSBooleanKeyword() {
-  return __isTSBooleanKeyword;
+  return f24 || (f24 = node => node && node.type === "TSBooleanKeyword");
 }
 
-function __isTSStringKeyword(node) {
-  return node && node.type === "TSStringKeyword";
-}
+var f25;
 export function isTSStringKeyword() {
-  return __isTSStringKeyword;
+  return f25 || (f25 = node => node && node.type === "TSStringKeyword");
 }
 
-function __isTSSymbolKeyword(node) {
-  return node && node.type === "TSSymbolKeyword";
-}
+var f26;
 export function isTSSymbolKeyword() {
-  return __isTSSymbolKeyword;
+  return f26 || (f26 = node => node && node.type === "TSSymbolKeyword");
 }
 
-function __isTSVoidKeyword(node) {
-  return node && node.type === "TSVoidKeyword";
-}
+var f27;
 export function isTSVoidKeyword() {
-  return __isTSVoidKeyword;
+  return f27 || (f27 = node => node && node.type === "TSVoidKeyword");
 }
 
-function __isTSUndefinedKeyword(node) {
-  return node && node.type === "TSUndefinedKeyword";
-}
+var f28;
 export function isTSUndefinedKeyword() {
-  return __isTSUndefinedKeyword;
+  return f28 || (f28 = node => node && node.type === "TSUndefinedKeyword");
 }
 
-function __isTSNullKeyword(node) {
-  return node && node.type === "TSNullKeyword";
-}
+var f29;
 export function isTSNullKeyword() {
-  return __isTSNullKeyword;
+  return f29 || (f29 = node => node && node.type === "TSNullKeyword");
 }
 
-function __isTSNeverKeyword(node) {
-  return node && node.type === "TSNeverKeyword";
-}
+var f30;
 export function isTSNeverKeyword() {
-  return __isTSNeverKeyword;
+  return f30 || (f30 = node => node && node.type === "TSNeverKeyword");
 }
 
-function __isTSThisType(node) {
-  return node && node.type === "TSThisType";
-}
+var f31;
 export function isTSThisType() {
-  return __isTSThisType;
+  return f31 || (f31 = node => node && node.type === "TSThisType");
 }
 
 export function isTSFunctionType(matchers) {
@@ -2518,14 +2476,14 @@ export function isTSFunctionType(matchers) {
     return node => node && node.type === "TSFunctionType";
   }
 
-  const _m0_ = matchers["typeParameters"];
-  const _m1_ = matchers["typeAnnotation"];
+  const m0 = matchers["typeParameters"],
+    m1 = matchers["typeAnnotation"];
 
   return node =>
     node &&
     node.type === "TSFunctionType" &&
-    (!_m0_ || match(_m0_, node["typeParameters"])) &&
-    (!_m1_ || match(_m1_, node["typeAnnotation"]));
+    (!m0 || match(m0, node["typeParameters"])) &&
+    (!m1 || match(m1, node["typeAnnotation"]));
 }
 
 export function isTSConstructorType(matchers) {
@@ -2533,14 +2491,14 @@ export function isTSConstructorType(matchers) {
     return node => node && node.type === "TSConstructorType";
   }
 
-  const _m0_ = matchers["typeParameters"];
-  const _m1_ = matchers["typeAnnotation"];
+  const m0 = matchers["typeParameters"],
+    m1 = matchers["typeAnnotation"];
 
   return node =>
     node &&
     node.type === "TSConstructorType" &&
-    (!_m0_ || match(_m0_, node["typeParameters"])) &&
-    (!_m1_ || match(_m1_, node["typeAnnotation"]));
+    (!m0 || match(m0, node["typeParameters"])) &&
+    (!m1 || match(m1, node["typeAnnotation"]));
 }
 
 export function isTSTypeReference(matchers) {
@@ -2548,14 +2506,14 @@ export function isTSTypeReference(matchers) {
     return node => node && node.type === "TSTypeReference";
   }
 
-  const _m0_ = matchers["typeName"];
-  const _m1_ = matchers["typeParameters"];
+  const m0 = matchers["typeName"],
+    m1 = matchers["typeParameters"];
 
   return node =>
     node &&
     node.type === "TSTypeReference" &&
-    (!_m0_ || match(_m0_, node["typeName"])) &&
-    (!_m1_ || match(_m1_, node["typeParameters"]));
+    (!m0 || match(m0, node["typeName"])) &&
+    (!m1 || match(m1, node["typeParameters"]));
 }
 
 export function isTSTypePredicate(matchers) {
@@ -2563,14 +2521,14 @@ export function isTSTypePredicate(matchers) {
     return node => node && node.type === "TSTypePredicate";
   }
 
-  const _m0_ = matchers["parameterName"];
-  const _m1_ = matchers["typeAnnotation"];
+  const m0 = matchers["parameterName"],
+    m1 = matchers["typeAnnotation"];
 
   return node =>
     node &&
     node.type === "TSTypePredicate" &&
-    (!_m0_ || match(_m0_, node["parameterName"])) &&
-    (!_m1_ || match(_m1_, node["typeAnnotation"]));
+    (!m0 || match(m0, node["parameterName"])) &&
+    (!m1 || match(m1, node["typeAnnotation"]));
 }
 
 export function isTSTypeQuery(matchers) {
@@ -2578,12 +2536,13 @@ export function isTSTypeQuery(matchers) {
     return node => node && node.type === "TSTypeQuery";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["exprName"]
       : matchers;
+
   return node =>
-    node && node.type === "TSTypeQuery" && match(matcher, node["exprName"]);
+    node && node.type === "TSTypeQuery" && match(m, node["exprName"]);
 }
 
 export function isTSTypeLiteral(matchers) {
@@ -2591,12 +2550,13 @@ export function isTSTypeLiteral(matchers) {
     return node => node && node.type === "TSTypeLiteral";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["members"]
       : matchers;
+
   return node =>
-    node && node.type === "TSTypeLiteral" && match(matcher, node["members"]);
+    node && node.type === "TSTypeLiteral" && match(m, node["members"]);
 }
 
 export function isTSArrayType(matchers) {
@@ -2604,12 +2564,13 @@ export function isTSArrayType(matchers) {
     return node => node && node.type === "TSArrayType";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["elementType"]
       : matchers;
+
   return node =>
-    node && node.type === "TSArrayType" && match(matcher, node["elementType"]);
+    node && node.type === "TSArrayType" && match(m, node["elementType"]);
 }
 
 export function isTSTupleType(matchers) {
@@ -2617,12 +2578,13 @@ export function isTSTupleType(matchers) {
     return node => node && node.type === "TSTupleType";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["elementTypes"]
       : matchers;
+
   return node =>
-    node && node.type === "TSTupleType" && match(matcher, node["elementTypes"]);
+    node && node.type === "TSTupleType" && match(m, node["elementTypes"]);
 }
 
 export function isTSUnionType(matchers) {
@@ -2630,12 +2592,12 @@ export function isTSUnionType(matchers) {
     return node => node && node.type === "TSUnionType";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["types"]
       : matchers;
-  return node =>
-    node && node.type === "TSUnionType" && match(matcher, node["types"]);
+
+  return node => node && node.type === "TSUnionType" && match(m, node["types"]);
 }
 
 export function isTSIntersectionType(matchers) {
@@ -2643,12 +2605,13 @@ export function isTSIntersectionType(matchers) {
     return node => node && node.type === "TSIntersectionType";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["types"]
       : matchers;
+
   return node =>
-    node && node.type === "TSIntersectionType" && match(matcher, node["types"]);
+    node && node.type === "TSIntersectionType" && match(m, node["types"]);
 }
 
 export function isTSConditionalType(matchers) {
@@ -2656,18 +2619,18 @@ export function isTSConditionalType(matchers) {
     return node => node && node.type === "TSConditionalType";
   }
 
-  const _m0_ = matchers["checkType"];
-  const _m1_ = matchers["extendsType"];
-  const _m2_ = matchers["trueType"];
-  const _m3_ = matchers["falseType"];
+  const m0 = matchers["checkType"],
+    m1 = matchers["extendsType"],
+    m2 = matchers["trueType"],
+    m3 = matchers["falseType"];
 
   return node =>
     node &&
     node.type === "TSConditionalType" &&
-    (!_m0_ || match(_m0_, node["checkType"])) &&
-    (!_m1_ || match(_m1_, node["extendsType"])) &&
-    (!_m2_ || match(_m2_, node["trueType"])) &&
-    (!_m3_ || match(_m3_, node["falseType"]));
+    (!m0 || match(m0, node["checkType"])) &&
+    (!m1 || match(m1, node["extendsType"])) &&
+    (!m2 || match(m2, node["trueType"])) &&
+    (!m3 || match(m3, node["falseType"]));
 }
 
 export function isTSInferType(matchers) {
@@ -2675,14 +2638,13 @@ export function isTSInferType(matchers) {
     return node => node && node.type === "TSInferType";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["typeParameter"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "TSInferType" &&
-    match(matcher, node["typeParameter"]);
+    node && node.type === "TSInferType" && match(m, node["typeParameter"]);
 }
 
 export function isTSParenthesizedType(matchers) {
@@ -2690,14 +2652,15 @@ export function isTSParenthesizedType(matchers) {
     return node => node && node.type === "TSParenthesizedType";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["typeAnnotation"]
       : matchers;
+
   return node =>
     node &&
     node.type === "TSParenthesizedType" &&
-    match(matcher, node["typeAnnotation"]);
+    match(m, node["typeAnnotation"]);
 }
 
 export function isTSTypeOperator(matchers) {
@@ -2705,14 +2668,13 @@ export function isTSTypeOperator(matchers) {
     return node => node && node.type === "TSTypeOperator";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["typeAnnotation"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "TSTypeOperator" &&
-    match(matcher, node["typeAnnotation"]);
+    node && node.type === "TSTypeOperator" && match(m, node["typeAnnotation"]);
 }
 
 export function isTSIndexedAccessType(matchers) {
@@ -2720,14 +2682,14 @@ export function isTSIndexedAccessType(matchers) {
     return node => node && node.type === "TSIndexedAccessType";
   }
 
-  const _m0_ = matchers["objectType"];
-  const _m1_ = matchers["indexType"];
+  const m0 = matchers["objectType"],
+    m1 = matchers["indexType"];
 
   return node =>
     node &&
     node.type === "TSIndexedAccessType" &&
-    (!_m0_ || match(_m0_, node["objectType"])) &&
-    (!_m1_ || match(_m1_, node["indexType"]));
+    (!m0 || match(m0, node["objectType"])) &&
+    (!m1 || match(m1, node["indexType"]));
 }
 
 export function isTSMappedType(matchers) {
@@ -2735,14 +2697,14 @@ export function isTSMappedType(matchers) {
     return node => node && node.type === "TSMappedType";
   }
 
-  const _m0_ = matchers["typeParameter"];
-  const _m1_ = matchers["typeAnnotation"];
+  const m0 = matchers["typeParameter"],
+    m1 = matchers["typeAnnotation"];
 
   return node =>
     node &&
     node.type === "TSMappedType" &&
-    (!_m0_ || match(_m0_, node["typeParameter"])) &&
-    (!_m1_ || match(_m1_, node["typeAnnotation"]));
+    (!m0 || match(m0, node["typeParameter"])) &&
+    (!m1 || match(m1, node["typeAnnotation"]));
 }
 
 export function isTSLiteralType(matchers) {
@@ -2750,12 +2712,13 @@ export function isTSLiteralType(matchers) {
     return node => node && node.type === "TSLiteralType";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["literal"]
       : matchers;
+
   return node =>
-    node && node.type === "TSLiteralType" && match(matcher, node["literal"]);
+    node && node.type === "TSLiteralType" && match(m, node["literal"]);
 }
 
 export function isTSExpressionWithTypeArguments(matchers) {
@@ -2763,14 +2726,14 @@ export function isTSExpressionWithTypeArguments(matchers) {
     return node => node && node.type === "TSExpressionWithTypeArguments";
   }
 
-  const _m0_ = matchers["expression"];
-  const _m1_ = matchers["typeParameters"];
+  const m0 = matchers["expression"],
+    m1 = matchers["typeParameters"];
 
   return node =>
     node &&
     node.type === "TSExpressionWithTypeArguments" &&
-    (!_m0_ || match(_m0_, node["expression"])) &&
-    (!_m1_ || match(_m1_, node["typeParameters"]));
+    (!m0 || match(m0, node["expression"])) &&
+    (!m1 || match(m1, node["typeParameters"]));
 }
 
 export function isTSInterfaceDeclaration(matchers) {
@@ -2778,18 +2741,18 @@ export function isTSInterfaceDeclaration(matchers) {
     return node => node && node.type === "TSInterfaceDeclaration";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["typeParameters"];
-  const _m2_ = matchers["extends"];
-  const _m3_ = matchers["body"];
+  const m0 = matchers["id"],
+    m1 = matchers["typeParameters"],
+    m2 = matchers["extends"],
+    m3 = matchers["body"];
 
   return node =>
     node &&
     node.type === "TSInterfaceDeclaration" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["typeParameters"])) &&
-    (!_m2_ || match(_m2_, node["extends"])) &&
-    (!_m3_ || match(_m3_, node["body"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["typeParameters"])) &&
+    (!m2 || match(m2, node["extends"])) &&
+    (!m3 || match(m3, node["body"]));
 }
 
 export function isTSInterfaceBody(matchers) {
@@ -2797,12 +2760,13 @@ export function isTSInterfaceBody(matchers) {
     return node => node && node.type === "TSInterfaceBody";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["body"]
       : matchers;
+
   return node =>
-    node && node.type === "TSInterfaceBody" && match(matcher, node["body"]);
+    node && node.type === "TSInterfaceBody" && match(m, node["body"]);
 }
 
 export function isTSTypeAliasDeclaration(matchers) {
@@ -2810,16 +2774,16 @@ export function isTSTypeAliasDeclaration(matchers) {
     return node => node && node.type === "TSTypeAliasDeclaration";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["typeParameters"];
-  const _m2_ = matchers["typeAnnotation"];
+  const m0 = matchers["id"],
+    m1 = matchers["typeParameters"],
+    m2 = matchers["typeAnnotation"];
 
   return node =>
     node &&
     node.type === "TSTypeAliasDeclaration" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["typeParameters"])) &&
-    (!_m2_ || match(_m2_, node["typeAnnotation"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["typeParameters"])) &&
+    (!m2 || match(m2, node["typeAnnotation"]));
 }
 
 export function isTSAsExpression(matchers) {
@@ -2827,14 +2791,14 @@ export function isTSAsExpression(matchers) {
     return node => node && node.type === "TSAsExpression";
   }
 
-  const _m0_ = matchers["expression"];
-  const _m1_ = matchers["typeAnnotation"];
+  const m0 = matchers["expression"],
+    m1 = matchers["typeAnnotation"];
 
   return node =>
     node &&
     node.type === "TSAsExpression" &&
-    (!_m0_ || match(_m0_, node["expression"])) &&
-    (!_m1_ || match(_m1_, node["typeAnnotation"]));
+    (!m0 || match(m0, node["expression"])) &&
+    (!m1 || match(m1, node["typeAnnotation"]));
 }
 
 export function isTSTypeAssertion(matchers) {
@@ -2842,14 +2806,14 @@ export function isTSTypeAssertion(matchers) {
     return node => node && node.type === "TSTypeAssertion";
   }
 
-  const _m0_ = matchers["typeAnnotation"];
-  const _m1_ = matchers["expression"];
+  const m0 = matchers["typeAnnotation"],
+    m1 = matchers["expression"];
 
   return node =>
     node &&
     node.type === "TSTypeAssertion" &&
-    (!_m0_ || match(_m0_, node["typeAnnotation"])) &&
-    (!_m1_ || match(_m1_, node["expression"]));
+    (!m0 || match(m0, node["typeAnnotation"])) &&
+    (!m1 || match(m1, node["expression"]));
 }
 
 export function isTSEnumDeclaration(matchers) {
@@ -2857,14 +2821,14 @@ export function isTSEnumDeclaration(matchers) {
     return node => node && node.type === "TSEnumDeclaration";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["members"];
+  const m0 = matchers["id"],
+    m1 = matchers["members"];
 
   return node =>
     node &&
     node.type === "TSEnumDeclaration" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["members"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["members"]));
 }
 
 export function isTSEnumMember(matchers) {
@@ -2872,14 +2836,14 @@ export function isTSEnumMember(matchers) {
     return node => node && node.type === "TSEnumMember";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["initializer"];
+  const m0 = matchers["id"],
+    m1 = matchers["initializer"];
 
   return node =>
     node &&
     node.type === "TSEnumMember" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["initializer"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["initializer"]));
 }
 
 export function isTSModuleDeclaration(matchers) {
@@ -2887,14 +2851,14 @@ export function isTSModuleDeclaration(matchers) {
     return node => node && node.type === "TSModuleDeclaration";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["body"];
+  const m0 = matchers["id"],
+    m1 = matchers["body"];
 
   return node =>
     node &&
     node.type === "TSModuleDeclaration" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["body"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["body"]));
 }
 
 export function isTSModuleBlock(matchers) {
@@ -2902,12 +2866,13 @@ export function isTSModuleBlock(matchers) {
     return node => node && node.type === "TSModuleBlock";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["body"]
       : matchers;
+
   return node =>
-    node && node.type === "TSModuleBlock" && match(matcher, node["body"]);
+    node && node.type === "TSModuleBlock" && match(m, node["body"]);
 }
 
 export function isTSImportEqualsDeclaration(matchers) {
@@ -2915,14 +2880,14 @@ export function isTSImportEqualsDeclaration(matchers) {
     return node => node && node.type === "TSImportEqualsDeclaration";
   }
 
-  const _m0_ = matchers["id"];
-  const _m1_ = matchers["moduleReference"];
+  const m0 = matchers["id"],
+    m1 = matchers["moduleReference"];
 
   return node =>
     node &&
     node.type === "TSImportEqualsDeclaration" &&
-    (!_m0_ || match(_m0_, node["id"])) &&
-    (!_m1_ || match(_m1_, node["moduleReference"]));
+    (!m0 || match(m0, node["id"])) &&
+    (!m1 || match(m1, node["moduleReference"]));
 }
 
 export function isTSExternalModuleReference(matchers) {
@@ -2930,14 +2895,15 @@ export function isTSExternalModuleReference(matchers) {
     return node => node && node.type === "TSExternalModuleReference";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["expression"]
       : matchers;
+
   return node =>
     node &&
     node.type === "TSExternalModuleReference" &&
-    match(matcher, node["expression"]);
+    match(m, node["expression"]);
 }
 
 export function isTSNonNullExpression(matchers) {
@@ -2945,14 +2911,13 @@ export function isTSNonNullExpression(matchers) {
     return node => node && node.type === "TSNonNullExpression";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["expression"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "TSNonNullExpression" &&
-    match(matcher, node["expression"]);
+    node && node.type === "TSNonNullExpression" && match(m, node["expression"]);
 }
 
 export function isTSExportAssignment(matchers) {
@@ -2960,14 +2925,13 @@ export function isTSExportAssignment(matchers) {
     return node => node && node.type === "TSExportAssignment";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["expression"]
       : matchers;
+
   return node =>
-    node &&
-    node.type === "TSExportAssignment" &&
-    match(matcher, node["expression"]);
+    node && node.type === "TSExportAssignment" && match(m, node["expression"]);
 }
 
 export function isTSNamespaceExportDeclaration(matchers) {
@@ -2975,14 +2939,15 @@ export function isTSNamespaceExportDeclaration(matchers) {
     return node => node && node.type === "TSNamespaceExportDeclaration";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["id"]
       : matchers;
+
   return node =>
     node &&
     node.type === "TSNamespaceExportDeclaration" &&
-    match(matcher, node["id"]);
+    match(m, node["id"]);
 }
 
 export function isTSTypeAnnotation(matchers) {
@@ -2990,14 +2955,15 @@ export function isTSTypeAnnotation(matchers) {
     return node => node && node.type === "TSTypeAnnotation";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["typeAnnotation"]
       : matchers;
+
   return node =>
     node &&
     node.type === "TSTypeAnnotation" &&
-    match(matcher, node["typeAnnotation"]);
+    match(m, node["typeAnnotation"]);
 }
 
 export function isTSTypeParameterInstantiation(matchers) {
@@ -3005,14 +2971,15 @@ export function isTSTypeParameterInstantiation(matchers) {
     return node => node && node.type === "TSTypeParameterInstantiation";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["params"]
       : matchers;
+
   return node =>
     node &&
     node.type === "TSTypeParameterInstantiation" &&
-    match(matcher, node["params"]);
+    match(m, node["params"]);
 }
 
 export function isTSTypeParameterDeclaration(matchers) {
@@ -3020,14 +2987,15 @@ export function isTSTypeParameterDeclaration(matchers) {
     return node => node && node.type === "TSTypeParameterDeclaration";
   }
 
-  const matcher =
+  const m =
     typeof matchers === "object" && !Array.isArray(matchers)
       ? matchers["params"]
       : matchers;
+
   return node =>
     node &&
     node.type === "TSTypeParameterDeclaration" &&
-    match(matcher, node["params"]);
+    match(m, node["params"]);
 }
 
 export function isTSTypeParameter(matchers) {
@@ -3035,12 +3003,12 @@ export function isTSTypeParameter(matchers) {
     return node => node && node.type === "TSTypeParameter";
   }
 
-  const _m0_ = matchers["constraint"];
-  const _m1_ = matchers["default"];
+  const m0 = matchers["constraint"],
+    m1 = matchers["default"];
 
   return node =>
     node &&
     node.type === "TSTypeParameter" &&
-    (!_m0_ || match(_m0_, node["constraint"])) &&
-    (!_m1_ || match(_m1_, node["default"]));
+    (!m0 || match(m0, node["constraint"])) &&
+    (!m1 || match(m1, node["default"]));
 }
