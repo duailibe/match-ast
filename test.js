@@ -18,9 +18,26 @@ test("object", () => {
   expect(check(ast)).toBeTruthy();
 });
 
+test("array", () => {
+  const checkFail = t.isCallExpression({
+    arguments: [t.isIdentifier()]
+  });
+  const checkOk = t.isCallExpression({
+    arguments: [t.isIdentifier(), t.isIdentifier(), t.isIdentifier()]
+  });
+  expect(checkFail(ast)).toBeFalsy();
+  expect(checkOk(ast)).toBeTruthy();
+});
+
 test("value", () => {
   const check = t.isIdentifier("bar");
   expect(check(ast.arguments[0])).toBeTruthy();
+});
+
+test("array value", () => {
+  const check = t.isArrayExpression([t.isIdentifier("foo"), t.isIdentifier()]);
+  const ast = parser.parseExpression("[foo, bar]");
+  expect(check(ast)).toBeTruthy();
 });
 
 test("function", () => {

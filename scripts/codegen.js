@@ -30,7 +30,9 @@ function makeHelper(type) {
   if (keys.length === 1) {
     const key = keys[0];
     return wrap(`
-      const matcher = typeof matchers === "object" ? matchers["${key}"] : matchers;
+      const matcher = typeof matchers === "object" && !Array.isArray(matchers)
+        ? matchers["${key}"]
+        : matchers;
       return node => node && node.type === "${type}" && match(matcher, node["${key}"]);
     `);
   }
