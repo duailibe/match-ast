@@ -15,4 +15,4 @@ export default function(matcher, value) {
   }
 
   throw Error("Matcher of type " + typeof matcher + " unsupported.");
-};
+}
