@@ -50,10 +50,7 @@ test("fails with extra properties", () => {
   check(
     parser.parseExpression("foo(bar)"),
     t.isCallExpression,
-    [
-      ["object", t.isIdentifier()],
-      ["arguments", [t.isIdentifier()]]
-    ],
+    [["object", t.isIdentifier()], ["arguments", [t.isIdentifier()]]],
     [["value", "bar"]]
   );
 
@@ -88,4 +85,13 @@ test("accepts functions as matcher", () => {
     arguments: args => args.every(t.isIdentifier())
   });
   expect(check(ast)).toBeTruthy();
+});
+
+test("either works", () => {
+  const check = t.either(t.isIdentifier(), t.isNumericLiteral());
+  const identifier = parser.parseExpression("foo");
+  const number = parser.parseExpression("1");
+  expect(check(identifier)).toBeTruthy();
+  expect(check(number)).toBeTruthy();
+  expect(check(ast)).toBeFalsy();
 });
