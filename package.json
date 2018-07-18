@@ -1,6 +1,6 @@
 {
   "name": "ast-verify",
-  "version": "0.0.1-alpha.1",
+  "version": "1.0.0",
   "description": "Helper functions to verify an AST structure",
   "author": "Lucas Duailibe",
   "repository": "duailibe/ast-verify",
