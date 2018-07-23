@@ -1,15 +1,16 @@
 .PHONY: build test
 
-SRC = $(addprefix src/,builtins.js match.js)
+SRC = $(filter-out src/generated.js,$(wildcard src/*.js))
 GENERATED = src/generated.js
+DIST = index.js
 
-build: index.js
+build: $(DIST)
 
-index.js: $(GENERATED)
-	./node_modules/.bin/rollup -o $@ -f cjs $<
+$(DIST): $(GENERATED)
+	./node_modules/.bin/rollup $< -o $@ -f cjs
 
-$(GENERATED): scripts/codegen.js $(SRC)
-	node $< $@
+$(GENERATED): scripts/codegen.js $(SRC) yarn.lock
+	node scripts/codegen.js $@
 
 check-diff: $(GENERATED)
 	@CHANGED=$$(git diff --name-only); \

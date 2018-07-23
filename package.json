@@ -16,11 +16,11 @@
     "index.js"
   ],
   "scripts": {
-    "prepare": "make build"
+    "prepublishOnly": "make -B build"
   },
   "devDependencies": {
     "@babel/parser": "^7.0.0-beta.54",
-    "@babel/types": "^7.0.0-beta.53",
+    "@babel/types": "^7.0.0-beta.54",
     "eslint": "^5.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.2",

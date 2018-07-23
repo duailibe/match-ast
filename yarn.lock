@@ -20,9 +20,9 @@
   version "7.0.0-beta.54"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.0.0-beta.54.tgz#c01aa63b57c9c8dce8744796c81d9df121f20db4"
 
-"@babel/types@^7.0.0-beta.53":
-  version "7.0.0-beta.53"
-  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.0.0-beta.53.tgz#19a461c0da515595dfb6740b4b45dc7bb0e6b375"
+"@babel/types@^7.0.0-beta.54":
+  version "7.0.0-beta.54"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.0.0-beta.54.tgz#025ad68492fed542c13f14c579a44c848e531063"
   dependencies:
     esutils "^2.0.2"
     lodash "^4.17.5"
