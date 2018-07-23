@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-  - 6
-  - 8
   - node
+  - 8
+  - 6
 cache:
   yarn: true
   directories:
@@ -13,13 +13,7 @@ env:
 matrix:
   fast_finish: true
   include:
-    - node_js: node
-      env: JOB=lint
-before_script:
-  - |
-    if [ "${JOB}" = "test" ] && [ -n "$(git diff)" ]; then
-      echo "Generated is out of sync"
-      exit 1
-    fi
+    - env: JOB=check-diff
+    - env: JOB=lint
 script:
-  - yarn $JOB
+  - make $JOB

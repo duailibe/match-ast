@@ -3,8 +3,9 @@
 const typeKeys = require("@babel/types").BUILDER_KEYS;
 const prettier = require("prettier");
 
-function checkNode(type) {
-  return `node && node.type === "${type}"`;
+function checkNode(type, check) {
+  check = check ? "&&" + check : "";
+  return `node => (node && node.type === "${type}" ${check})`;
 }
 
 let uid = 0;
@@ -13,7 +14,7 @@ function noMatcher(type) {
   return `
     var ${f};
     export function is${type}() {
-      return ${f} || (${f} = node => ${checkNode(type)});
+      return ${f} || (${f} = ${checkNode(type)});
     }
   `;
 }
@@ -22,11 +23,11 @@ function singleMatcher(type, key) {
   return `
     export function is${type}(matcher) {
       if (typeof matcher === "undefined") {
-        return node => ${checkNode(type)};
+        return ${checkNode(type)};
       }
 
       if (typeof matcher !== "object" || Array.isArray(matcher)) {
-        return node => ${checkNode(type)} && match(matcher, node["${key}"]);
+        return ${checkNode(type, `match(matcher, node["${key}"])`)};
       }
 
       const m = matcher["${key}"], n = Object.keys(matcher).length;
@@ -35,7 +36,7 @@ function singleMatcher(type, key) {
         return falseFn;
       }
 
-      return node => ${checkNode(type)} && (!m || match(m, node["${key}"]));
+      return ${checkNode(type, `(!m || match(m, node["${key}"]))`)};
     }
   `;
 }
@@ -53,7 +54,7 @@ function objMatcher(type, keys) {
   return `
     export function is${type}(matchers) {
       if (typeof matchers === "undefined") {
-        return node => node && node.type === "${type}";
+        return ${checkNode(type)};
       }
 
       let n = ${keys.length}, ${decls.join(",")};
@@ -62,12 +63,12 @@ function objMatcher(type, keys) {
         return falseFn;
       }
 
-      return node => ${checkNode(type)} && ${matchs.join("&&")}
+      return ${checkNode(type, matchs.join("&&"))};
     }
   `;
 }
 
-module.exports = function() {
+function generate() {
   let code = `
     import match from "./match";
 
@@ -87,4 +88,6 @@ module.exports = function() {
   }
 
   return prettier.format(code, { parser: "babylon" });
-};
+}
+
+require("fs").writeFileSync(process.argv[2], generate());
