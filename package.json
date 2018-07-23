@@ -1,9 +1,9 @@
 {
-  "name": "ast-verify",
-  "version": "1.0.2",
+  "name": "match-ast",
+  "version": "1.0.0",
   "description": "Helper functions to verify an AST structure",
   "author": "Lucas Duailibe",
-  "repository": "duailibe/ast-verify",
+  "repository": "duailibe/match-ast",
   "license": "MIT",
   "main": "index.js",
   "keywords": [

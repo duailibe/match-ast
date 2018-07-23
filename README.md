@@ -1,8 +1,8 @@
-# `ast-verify`
+# `match-ast`
 
-[![Travis](https://api.travis-ci.com/duailibe/ast-verify.svg)](https://travis-ci.com/duailibe/ast-verify)
+[![Travis](https://api.travis-ci.com/duailibe/match-ast.svg)](https://travis-ci.com/duailibe/match-ast)
 [![Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![npm](https://img.shields.io/npm/v/ast-verify.svg)](https://npmjs.org/ast-verify)
+[![npm](https://img.shields.io/npm/v/match-ast.svg)](https://npmjs.org/match-ast)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Collection of helper functions to verify a AST tree structure.
@@ -18,7 +18,7 @@ const {
   isCallExpression,
   isMemberExpression,
   isIdentifier
-} = require("ast-verify");
+} = require("match-ast");
 
 // Check if the tree represents a `JSON.stringify()` call.
 const isJsonStringify = isCallExpression({
@@ -51,7 +51,7 @@ const check = isCallExpression({ name: "foo" });
 For cases where a node can be one of many values:
 
 ```js
-const { either, isIdentifier, isMemberExpression } = require("ast-verify");
+const { either, isIdentifier, isMemberExpression } = require("match-ast");
 
 // Check if the three is a `JSON.stringify()` or `stringify()` call
 const isStringify = isCallExpression({
