@@ -1,6 +1,6 @@
 {
   "name": "match-ast",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Helper functions to verify an AST structure",
   "author": "Lucas Duailibe",
   "repository": "duailibe/match-ast",
