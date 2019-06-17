@@ -8,13 +8,10 @@ function checkNode(type, check) {
   return `node => (node && node.type === "${type}" ${check})`;
 }
 
-let uid = 0;
 function noMatcher(type) {
-  const f = `f${uid++}`;
   return `
-    var ${f};
     export function is${type}() {
-      return ${f} || (${f} = ${checkNode(type)});
+      return ${checkNode(type)};
     }
   `;
 }
@@ -33,7 +30,7 @@ function singleMatcher(type, key) {
       const m = matcher["${key}"], n = Object.keys(matcher).length;
 
       if (n > 1 || (n === 1 && !m)) {
-        return falseFn;
+        return () => false;
       }
 
       return ${checkNode(type, `(!m || match(m, node["${key}"]))`)};
@@ -60,7 +57,7 @@ function objMatcher(type, keys) {
       let n = ${keys.length}, ${decls.join(",")};
 
       if (Object.keys(matchers).length !== n) {
-        return falseFn;
+        return () => false;
       }
 
       return ${checkNode(type, matchs.join("&&"))};
@@ -73,8 +70,6 @@ function generate() {
     import match from "./match";
 
     export * from "./builtins";
-
-    const falseFn = () => false;
   `;
 
   for (const type of Object.keys(typeKeys)) {
@@ -87,7 +82,7 @@ function generate() {
           : objMatcher(type, keys);
   }
 
-  return prettier.format(code, { parser: "babylon" });
+  return prettier.format(code, { parser: "babel" });
 }
 
 require("fs").writeFileSync(process.argv[2], generate());

@@ -2,8 +2,6 @@ import match from "./match";
 
 export * from "./builtins";
 
-const falseFn = () => false;
-
 export function isArrayExpression(matcher) {
   if (typeof matcher === "undefined") {
     return node => node && node.type === "ArrayExpression";
@@ -20,7 +18,7 @@ export function isArrayExpression(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -40,7 +38,7 @@ export function isAssignmentExpression(matchers) {
     m2 = matchers["right"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -62,7 +60,7 @@ export function isBinaryExpression(matchers) {
     m2 = matchers["right"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -89,7 +87,7 @@ export function isInterpreterDirective(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -112,7 +110,7 @@ export function isDirective(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -133,7 +131,7 @@ export function isDirectiveLiteral(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -150,7 +148,7 @@ export function isBlockStatement(matchers) {
     m1 = matchers["directives"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -174,7 +172,7 @@ export function isBreakStatement(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -191,7 +189,7 @@ export function isCallExpression(matchers) {
     m1 = matchers["arguments"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -211,7 +209,7 @@ export function isCatchClause(matchers) {
     m1 = matchers["body"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -232,7 +230,7 @@ export function isConditionalExpression(matchers) {
     m2 = matchers["alternate"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -259,7 +257,7 @@ export function isContinueStatement(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -268,9 +266,8 @@ export function isContinueStatement(matcher) {
     (!m || match(m, node["label"]));
 }
 
-var f0;
 export function isDebuggerStatement() {
-  return f0 || (f0 = node => node && node.type === "DebuggerStatement");
+  return node => node && node.type === "DebuggerStatement";
 }
 
 export function isDoWhileStatement(matchers) {
@@ -283,7 +280,7 @@ export function isDoWhileStatement(matchers) {
     m1 = matchers["body"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -293,9 +290,8 @@ export function isDoWhileStatement(matchers) {
     (!m1 || match(m1, node["body"]));
 }
 
-var f1;
 export function isEmptyStatement() {
-  return f1 || (f1 = node => node && node.type === "EmptyStatement");
+  return node => node && node.type === "EmptyStatement";
 }
 
 export function isExpressionStatement(matcher) {
@@ -314,7 +310,7 @@ export function isExpressionStatement(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -334,7 +330,7 @@ export function isFile(matchers) {
     m2 = matchers["tokens"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -356,7 +352,7 @@ export function isForInStatement(matchers) {
     m2 = matchers["body"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -379,7 +375,7 @@ export function isForStatement(matchers) {
     m3 = matchers["body"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -404,7 +400,7 @@ export function isFunctionDeclaration(matchers) {
     m4 = matchers["async"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -430,7 +426,7 @@ export function isFunctionExpression(matchers) {
     m4 = matchers["async"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -457,7 +453,7 @@ export function isIdentifier(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -475,7 +471,7 @@ export function isIfStatement(matchers) {
     m2 = matchers["alternate"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -496,7 +492,7 @@ export function isLabeledStatement(matchers) {
     m1 = matchers["body"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -520,7 +516,7 @@ export function isStringLiteral(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -541,16 +537,15 @@ export function isNumericLiteral(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
     node && node.type === "NumericLiteral" && (!m || match(m, node["value"]));
 }
 
-var f2;
 export function isNullLiteral() {
-  return f2 || (f2 = node => node && node.type === "NullLiteral");
+  return node => node && node.type === "NullLiteral";
 }
 
 export function isBooleanLiteral(matcher) {
@@ -567,7 +562,7 @@ export function isBooleanLiteral(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -584,7 +579,7 @@ export function isRegExpLiteral(matchers) {
     m1 = matchers["flags"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -605,7 +600,7 @@ export function isLogicalExpression(matchers) {
     m2 = matchers["right"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -628,7 +623,7 @@ export function isMemberExpression(matchers) {
     m3 = matchers["optional"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -650,7 +645,7 @@ export function isNewExpression(matchers) {
     m1 = matchers["arguments"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -672,7 +667,7 @@ export function isProgram(matchers) {
     m3 = matchers["interpreter"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -700,7 +695,7 @@ export function isObjectExpression(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -722,7 +717,7 @@ export function isObjectMethod(matchers) {
     m4 = matchers["computed"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -748,7 +743,7 @@ export function isObjectProperty(matchers) {
     m4 = matchers["decorators"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -775,7 +770,7 @@ export function isRestElement(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -798,7 +793,7 @@ export function isReturnStatement(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -823,13 +818,38 @@ export function isSequenceExpression(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
     node &&
     node.type === "SequenceExpression" &&
     (!m || match(m, node["expressions"]));
+}
+
+export function isParenthesizedExpression(matcher) {
+  if (typeof matcher === "undefined") {
+    return node => node && node.type === "ParenthesizedExpression";
+  }
+
+  if (typeof matcher !== "object" || Array.isArray(matcher)) {
+    return node =>
+      node &&
+      node.type === "ParenthesizedExpression" &&
+      match(matcher, node["expression"]);
+  }
+
+  const m = matcher["expression"],
+    n = Object.keys(matcher).length;
+
+  if (n > 1 || (n === 1 && !m)) {
+    return () => false;
+  }
+
+  return node =>
+    node &&
+    node.type === "ParenthesizedExpression" &&
+    (!m || match(m, node["expression"]));
 }
 
 export function isSwitchCase(matchers) {
@@ -842,7 +862,7 @@ export function isSwitchCase(matchers) {
     m1 = matchers["consequent"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -862,7 +882,7 @@ export function isSwitchStatement(matchers) {
     m1 = matchers["cases"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -872,9 +892,8 @@ export function isSwitchStatement(matchers) {
     (!m1 || match(m1, node["cases"]));
 }
 
-var f3;
 export function isThisExpression() {
-  return f3 || (f3 = node => node && node.type === "ThisExpression");
+  return node => node && node.type === "ThisExpression";
 }
 
 export function isThrowStatement(matcher) {
@@ -893,7 +912,7 @@ export function isThrowStatement(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -913,7 +932,7 @@ export function isTryStatement(matchers) {
     m2 = matchers["finalizer"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -935,7 +954,7 @@ export function isUnaryExpression(matchers) {
     m2 = matchers["prefix"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -957,7 +976,7 @@ export function isUpdateExpression(matchers) {
     m2 = matchers["prefix"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -978,7 +997,7 @@ export function isVariableDeclaration(matchers) {
     m1 = matchers["declarations"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -998,7 +1017,7 @@ export function isVariableDeclarator(matchers) {
     m1 = matchers["init"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1018,7 +1037,7 @@ export function isWhileStatement(matchers) {
     m1 = matchers["body"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1038,7 +1057,7 @@ export function isWithStatement(matchers) {
     m1 = matchers["body"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1058,7 +1077,7 @@ export function isAssignmentPattern(matchers) {
     m1 = matchers["right"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1082,7 +1101,7 @@ export function isArrayPattern(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1100,7 +1119,7 @@ export function isArrowFunctionExpression(matchers) {
     m2 = matchers["async"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1125,7 +1144,7 @@ export function isClassBody(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1144,7 +1163,7 @@ export function isClassDeclaration(matchers) {
     m3 = matchers["decorators"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1168,7 +1187,7 @@ export function isClassExpression(matchers) {
     m3 = matchers["decorators"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1196,7 +1215,7 @@ export function isExportAllDeclaration(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1221,7 +1240,7 @@ export function isExportDefaultDeclaration(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1241,7 +1260,7 @@ export function isExportNamedDeclaration(matchers) {
     m2 = matchers["source"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1262,7 +1281,7 @@ export function isExportSpecifier(matchers) {
     m1 = matchers["exported"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1283,7 +1302,7 @@ export function isForOfStatement(matchers) {
     m2 = matchers["body"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1304,7 +1323,7 @@ export function isImportDeclaration(matchers) {
     m1 = matchers["source"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1330,7 +1349,7 @@ export function isImportDefaultSpecifier(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1355,7 +1374,7 @@ export function isImportNamespaceSpecifier(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1374,7 +1393,7 @@ export function isImportSpecifier(matchers) {
     m1 = matchers["imported"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1394,7 +1413,7 @@ export function isMetaProperty(matchers) {
     m1 = matchers["property"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1418,7 +1437,7 @@ export function isClassMethod(matchers) {
     m5 = matchers["static"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1448,7 +1467,7 @@ export function isObjectPattern(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1471,16 +1490,15 @@ export function isSpreadElement(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
     node && node.type === "SpreadElement" && (!m || match(m, node["argument"]));
 }
 
-var f4;
 export function isSuper() {
-  return f4 || (f4 = node => node && node.type === "Super");
+  return node => node && node.type === "Super";
 }
 
 export function isTaggedTemplateExpression(matchers) {
@@ -1493,7 +1511,7 @@ export function isTaggedTemplateExpression(matchers) {
     m1 = matchers["quasi"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1513,7 +1531,7 @@ export function isTemplateElement(matchers) {
     m1 = matchers["tail"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1533,7 +1551,7 @@ export function isTemplateLiteral(matchers) {
     m1 = matchers["expressions"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1553,7 +1571,7 @@ export function isYieldExpression(matchers) {
     m1 = matchers["delegate"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1563,9 +1581,8 @@ export function isYieldExpression(matchers) {
     (!m1 || match(m1, node["delegate"]));
 }
 
-var f5;
 export function isAnyTypeAnnotation() {
-  return f5 || (f5 = node => node && node.type === "AnyTypeAnnotation");
+  return node => node && node.type === "AnyTypeAnnotation";
 }
 
 export function isArrayTypeAnnotation(matcher) {
@@ -1584,7 +1601,7 @@ export function isArrayTypeAnnotation(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1593,9 +1610,8 @@ export function isArrayTypeAnnotation(matcher) {
     (!m || match(m, node["elementType"]));
 }
 
-var f6;
 export function isBooleanTypeAnnotation() {
-  return f6 || (f6 = node => node && node.type === "BooleanTypeAnnotation");
+  return node => node && node.type === "BooleanTypeAnnotation";
 }
 
 export function isBooleanLiteralTypeAnnotation(matcher) {
@@ -1614,7 +1630,7 @@ export function isBooleanLiteralTypeAnnotation(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1623,9 +1639,8 @@ export function isBooleanLiteralTypeAnnotation(matcher) {
     (!m || match(m, node["value"]));
 }
 
-var f7;
 export function isNullLiteralTypeAnnotation() {
-  return f7 || (f7 = node => node && node.type === "NullLiteralTypeAnnotation");
+  return node => node && node.type === "NullLiteralTypeAnnotation";
 }
 
 export function isClassImplements(matchers) {
@@ -1638,7 +1653,7 @@ export function isClassImplements(matchers) {
     m1 = matchers["typeParameters"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1660,7 +1675,7 @@ export function isDeclareClass(matchers) {
     m3 = matchers["body"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1686,7 +1701,7 @@ export function isDeclareFunction(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1705,7 +1720,7 @@ export function isDeclareInterface(matchers) {
     m3 = matchers["body"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1728,7 +1743,7 @@ export function isDeclareModule(matchers) {
     m2 = matchers["kind"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1755,7 +1770,7 @@ export function isDeclareModuleExports(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1775,7 +1790,7 @@ export function isDeclareTypeAlias(matchers) {
     m2 = matchers["right"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1797,7 +1812,7 @@ export function isDeclareOpaqueType(matchers) {
     m2 = matchers["supertype"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1822,7 +1837,7 @@ export function isDeclareVariable(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1840,7 +1855,7 @@ export function isDeclareExportDeclaration(matchers) {
     m2 = matchers["source"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1867,7 +1882,7 @@ export function isDeclareExportAllDeclaration(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1892,7 +1907,7 @@ export function isDeclaredPredicate(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1901,9 +1916,8 @@ export function isDeclaredPredicate(matcher) {
     (!m || match(m, node["value"]));
 }
 
-var f8;
 export function isExistsTypeAnnotation() {
-  return f8 || (f8 = node => node && node.type === "ExistsTypeAnnotation");
+  return node => node && node.type === "ExistsTypeAnnotation";
 }
 
 export function isFunctionTypeAnnotation(matchers) {
@@ -1918,7 +1932,7 @@ export function isFunctionTypeAnnotation(matchers) {
     m3 = matchers["returnType"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1940,7 +1954,7 @@ export function isFunctionTypeParam(matchers) {
     m1 = matchers["typeAnnotation"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1960,7 +1974,7 @@ export function isGenericTypeAnnotation(matchers) {
     m1 = matchers["typeParameters"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -1970,9 +1984,8 @@ export function isGenericTypeAnnotation(matchers) {
     (!m1 || match(m1, node["typeParameters"]));
 }
 
-var f9;
 export function isInferredPredicate() {
-  return f9 || (f9 = node => node && node.type === "InferredPredicate");
+  return node => node && node.type === "InferredPredicate";
 }
 
 export function isInterfaceExtends(matchers) {
@@ -1985,7 +1998,7 @@ export function isInterfaceExtends(matchers) {
     m1 = matchers["typeParameters"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2007,7 +2020,7 @@ export function isInterfaceDeclaration(matchers) {
     m3 = matchers["body"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2029,7 +2042,7 @@ export function isInterfaceTypeAnnotation(matchers) {
     m1 = matchers["body"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2055,7 +2068,7 @@ export function isIntersectionTypeAnnotation(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2064,14 +2077,12 @@ export function isIntersectionTypeAnnotation(matcher) {
     (!m || match(m, node["types"]));
 }
 
-var f10;
 export function isMixedTypeAnnotation() {
-  return f10 || (f10 = node => node && node.type === "MixedTypeAnnotation");
+  return node => node && node.type === "MixedTypeAnnotation";
 }
 
-var f11;
 export function isEmptyTypeAnnotation() {
-  return f11 || (f11 = node => node && node.type === "EmptyTypeAnnotation");
+  return node => node && node.type === "EmptyTypeAnnotation";
 }
 
 export function isNullableTypeAnnotation(matcher) {
@@ -2090,7 +2101,7 @@ export function isNullableTypeAnnotation(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2115,7 +2126,7 @@ export function isNumberLiteralTypeAnnotation(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2124,9 +2135,8 @@ export function isNumberLiteralTypeAnnotation(matcher) {
     (!m || match(m, node["value"]));
 }
 
-var f12;
 export function isNumberTypeAnnotation() {
-  return f12 || (f12 = node => node && node.type === "NumberTypeAnnotation");
+  return node => node && node.type === "NumberTypeAnnotation";
 }
 
 export function isObjectTypeAnnotation(matchers) {
@@ -2142,7 +2152,7 @@ export function isObjectTypeAnnotation(matchers) {
     m4 = matchers["exact"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2168,7 +2178,7 @@ export function isObjectTypeInternalSlot(matchers) {
     m4 = matchers["method"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2197,7 +2207,7 @@ export function isObjectTypeCallProperty(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2218,7 +2228,7 @@ export function isObjectTypeIndexer(matchers) {
     m3 = matchers["variance"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2241,7 +2251,7 @@ export function isObjectTypeProperty(matchers) {
     m2 = matchers["variance"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2268,7 +2278,7 @@ export function isObjectTypeSpreadProperty(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2289,7 +2299,7 @@ export function isOpaqueType(matchers) {
     m3 = matchers["impltype"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2311,7 +2321,7 @@ export function isQualifiedTypeIdentifier(matchers) {
     m1 = matchers["qualification"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2337,7 +2347,7 @@ export function isStringLiteralTypeAnnotation(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2346,14 +2356,12 @@ export function isStringLiteralTypeAnnotation(matcher) {
     (!m || match(m, node["value"]));
 }
 
-var f13;
 export function isStringTypeAnnotation() {
-  return f13 || (f13 = node => node && node.type === "StringTypeAnnotation");
+  return node => node && node.type === "StringTypeAnnotation";
 }
 
-var f14;
 export function isThisTypeAnnotation() {
-  return f14 || (f14 = node => node && node.type === "ThisTypeAnnotation");
+  return node => node && node.type === "ThisTypeAnnotation";
 }
 
 export function isTupleTypeAnnotation(matcher) {
@@ -2372,7 +2380,7 @@ export function isTupleTypeAnnotation(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2397,7 +2405,7 @@ export function isTypeofTypeAnnotation(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2417,7 +2425,7 @@ export function isTypeAlias(matchers) {
     m2 = matchers["right"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2444,7 +2452,7 @@ export function isTypeAnnotation(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2463,7 +2471,7 @@ export function isTypeCastExpression(matchers) {
     m1 = matchers["typeAnnotation"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2484,7 +2492,7 @@ export function isTypeParameter(matchers) {
     m2 = matchers["variance"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2511,7 +2519,7 @@ export function isTypeParameterDeclaration(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2536,7 +2544,7 @@ export function isTypeParameterInstantiation(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2561,7 +2569,7 @@ export function isUnionTypeAnnotation(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2584,16 +2592,15 @@ export function isVariance(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
     node && node.type === "Variance" && (!m || match(m, node["kind"]));
 }
 
-var f15;
 export function isVoidTypeAnnotation() {
-  return f15 || (f15 = node => node && node.type === "VoidTypeAnnotation");
+  return node => node && node.type === "VoidTypeAnnotation";
 }
 
 export function isJSXAttribute(matchers) {
@@ -2606,7 +2613,7 @@ export function isJSXAttribute(matchers) {
     m1 = matchers["value"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2630,7 +2637,7 @@ export function isJSXClosingElement(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2649,7 +2656,7 @@ export function isJSXElement(matchers) {
     m3 = matchers["selfClosing"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2661,9 +2668,8 @@ export function isJSXElement(matchers) {
     (!m3 || match(m3, node["selfClosing"]));
 }
 
-var f16;
 export function isJSXEmptyExpression() {
-  return f16 || (f16 = node => node && node.type === "JSXEmptyExpression");
+  return node => node && node.type === "JSXEmptyExpression";
 }
 
 export function isJSXExpressionContainer(matcher) {
@@ -2682,7 +2688,7 @@ export function isJSXExpressionContainer(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2707,7 +2713,7 @@ export function isJSXSpreadChild(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2730,7 +2736,7 @@ export function isJSXIdentifier(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2747,7 +2753,7 @@ export function isJSXMemberExpression(matchers) {
     m1 = matchers["property"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2767,7 +2773,7 @@ export function isJSXNamespacedName(matchers) {
     m1 = matchers["name"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2788,7 +2794,7 @@ export function isJSXOpeningElement(matchers) {
     m2 = matchers["selfClosing"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2815,7 +2821,7 @@ export function isJSXSpreadAttribute(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2838,7 +2844,7 @@ export function isJSXText(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2856,7 +2862,7 @@ export function isJSXFragment(matchers) {
     m2 = matchers["children"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2867,44 +2873,40 @@ export function isJSXFragment(matchers) {
     (!m2 || match(m2, node["children"]));
 }
 
-var f17;
 export function isJSXOpeningFragment() {
-  return f17 || (f17 = node => node && node.type === "JSXOpeningFragment");
+  return node => node && node.type === "JSXOpeningFragment";
 }
 
-var f18;
 export function isJSXClosingFragment() {
-  return f18 || (f18 = node => node && node.type === "JSXClosingFragment");
+  return node => node && node.type === "JSXClosingFragment";
 }
 
-var f19;
 export function isNoop() {
-  return f19 || (f19 = node => node && node.type === "Noop");
+  return node => node && node.type === "Noop";
 }
 
-export function isParenthesizedExpression(matcher) {
-  if (typeof matcher === "undefined") {
-    return node => node && node.type === "ParenthesizedExpression";
+export function isPlaceholder(matchers) {
+  if (typeof matchers === "undefined") {
+    return node => node && node.type === "Placeholder";
   }
 
-  if (typeof matcher !== "object" || Array.isArray(matcher)) {
-    return node =>
-      node &&
-      node.type === "ParenthesizedExpression" &&
-      match(matcher, node["expression"]);
-  }
+  let n = 2,
+    m0 = matchers["expectedNode"] || (n--, false),
+    m1 = matchers["name"] || (n--, false);
 
-  const m = matcher["expression"],
-    n = Object.keys(matcher).length;
-
-  if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+  if (Object.keys(matchers).length !== n) {
+    return () => false;
   }
 
   return node =>
     node &&
-    node.type === "ParenthesizedExpression" &&
-    (!m || match(m, node["expression"]));
+    node.type === "Placeholder" &&
+    (!m0 || match(m0, node["expectedNode"])) &&
+    (!m1 || match(m1, node["name"]));
+}
+
+export function isArgumentPlaceholder() {
+  return node => node && node.type === "ArgumentPlaceholder";
 }
 
 export function isAwaitExpression(matcher) {
@@ -2923,7 +2925,7 @@ export function isAwaitExpression(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2942,7 +2944,7 @@ export function isBindExpression(matchers) {
     m1 = matchers["callee"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2965,7 +2967,7 @@ export function isClassProperty(matchers) {
     m4 = matchers["computed"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -2990,7 +2992,7 @@ export function isOptionalMemberExpression(matchers) {
     m3 = matchers["optional"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3000,6 +3002,60 @@ export function isOptionalMemberExpression(matchers) {
     (!m1 || match(m1, node["property"])) &&
     (!m2 || match(m2, node["computed"])) &&
     (!m3 || match(m3, node["optional"]));
+}
+
+export function isPipelineTopicExpression(matcher) {
+  if (typeof matcher === "undefined") {
+    return node => node && node.type === "PipelineTopicExpression";
+  }
+
+  if (typeof matcher !== "object" || Array.isArray(matcher)) {
+    return node =>
+      node &&
+      node.type === "PipelineTopicExpression" &&
+      match(matcher, node["expression"]);
+  }
+
+  const m = matcher["expression"],
+    n = Object.keys(matcher).length;
+
+  if (n > 1 || (n === 1 && !m)) {
+    return () => false;
+  }
+
+  return node =>
+    node &&
+    node.type === "PipelineTopicExpression" &&
+    (!m || match(m, node["expression"]));
+}
+
+export function isPipelineBareFunction(matcher) {
+  if (typeof matcher === "undefined") {
+    return node => node && node.type === "PipelineBareFunction";
+  }
+
+  if (typeof matcher !== "object" || Array.isArray(matcher)) {
+    return node =>
+      node &&
+      node.type === "PipelineBareFunction" &&
+      match(matcher, node["callee"]);
+  }
+
+  const m = matcher["callee"],
+    n = Object.keys(matcher).length;
+
+  if (n > 1 || (n === 1 && !m)) {
+    return () => false;
+  }
+
+  return node =>
+    node &&
+    node.type === "PipelineBareFunction" &&
+    (!m || match(m, node["callee"]));
+}
+
+export function isPipelinePrimaryTopicReference() {
+  return node => node && node.type === "PipelinePrimaryTopicReference";
 }
 
 export function isOptionalCallExpression(matchers) {
@@ -3013,7 +3069,7 @@ export function isOptionalCallExpression(matchers) {
     m2 = matchers["optional"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3034,7 +3090,7 @@ export function isClassPrivateProperty(matchers) {
     m1 = matchers["value"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3044,9 +3100,34 @@ export function isClassPrivateProperty(matchers) {
     (!m1 || match(m1, node["value"]));
 }
 
-var f20;
+export function isClassPrivateMethod(matchers) {
+  if (typeof matchers === "undefined") {
+    return node => node && node.type === "ClassPrivateMethod";
+  }
+
+  let n = 5,
+    m0 = matchers["kind"] || (n--, false),
+    m1 = matchers["key"] || (n--, false),
+    m2 = matchers["params"] || (n--, false),
+    m3 = matchers["body"] || (n--, false),
+    m4 = matchers["static"] || (n--, false);
+
+  if (Object.keys(matchers).length !== n) {
+    return () => false;
+  }
+
+  return node =>
+    node &&
+    node.type === "ClassPrivateMethod" &&
+    (!m0 || match(m0, node["kind"])) &&
+    (!m1 || match(m1, node["key"])) &&
+    (!m2 || match(m2, node["params"])) &&
+    (!m3 || match(m3, node["body"])) &&
+    (!m4 || match(m4, node["static"]));
+}
+
 export function isImport() {
-  return f20 || (f20 = node => node && node.type === "Import");
+  return node => node && node.type === "Import";
 }
 
 export function isDecorator(matcher) {
@@ -3063,7 +3144,7 @@ export function isDecorator(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3084,7 +3165,7 @@ export function isDoExpression(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3107,7 +3188,7 @@ export function isExportDefaultSpecifier(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3132,7 +3213,7 @@ export function isExportNamespaceSpecifier(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3155,7 +3236,7 @@ export function isPrivateName(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3176,7 +3257,7 @@ export function isBigIntLiteral(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3199,7 +3280,7 @@ export function isTSParameterProperty(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3220,7 +3301,7 @@ export function isTSDeclareFunction(matchers) {
     m3 = matchers["returnType"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3245,7 +3326,7 @@ export function isTSDeclareMethod(matchers) {
     m4 = matchers["returnType"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3268,7 +3349,7 @@ export function isTSQualifiedName(matchers) {
     m1 = matchers["right"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3289,7 +3370,7 @@ export function isTSCallSignatureDeclaration(matchers) {
     m2 = matchers["typeAnnotation"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3311,7 +3392,7 @@ export function isTSConstructSignatureDeclaration(matchers) {
     m2 = matchers["typeAnnotation"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3333,7 +3414,7 @@ export function isTSPropertySignature(matchers) {
     m2 = matchers["initializer"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3356,7 +3437,7 @@ export function isTSMethodSignature(matchers) {
     m3 = matchers["typeAnnotation"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3378,7 +3459,7 @@ export function isTSIndexSignature(matchers) {
     m1 = matchers["typeAnnotation"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3388,59 +3469,52 @@ export function isTSIndexSignature(matchers) {
     (!m1 || match(m1, node["typeAnnotation"]));
 }
 
-var f21;
 export function isTSAnyKeyword() {
-  return f21 || (f21 = node => node && node.type === "TSAnyKeyword");
+  return node => node && node.type === "TSAnyKeyword";
 }
 
-var f22;
+export function isTSUnknownKeyword() {
+  return node => node && node.type === "TSUnknownKeyword";
+}
+
 export function isTSNumberKeyword() {
-  return f22 || (f22 = node => node && node.type === "TSNumberKeyword");
+  return node => node && node.type === "TSNumberKeyword";
 }
 
-var f23;
 export function isTSObjectKeyword() {
-  return f23 || (f23 = node => node && node.type === "TSObjectKeyword");
+  return node => node && node.type === "TSObjectKeyword";
 }
 
-var f24;
 export function isTSBooleanKeyword() {
-  return f24 || (f24 = node => node && node.type === "TSBooleanKeyword");
+  return node => node && node.type === "TSBooleanKeyword";
 }
 
-var f25;
 export function isTSStringKeyword() {
-  return f25 || (f25 = node => node && node.type === "TSStringKeyword");
+  return node => node && node.type === "TSStringKeyword";
 }
 
-var f26;
 export function isTSSymbolKeyword() {
-  return f26 || (f26 = node => node && node.type === "TSSymbolKeyword");
+  return node => node && node.type === "TSSymbolKeyword";
 }
 
-var f27;
 export function isTSVoidKeyword() {
-  return f27 || (f27 = node => node && node.type === "TSVoidKeyword");
+  return node => node && node.type === "TSVoidKeyword";
 }
 
-var f28;
 export function isTSUndefinedKeyword() {
-  return f28 || (f28 = node => node && node.type === "TSUndefinedKeyword");
+  return node => node && node.type === "TSUndefinedKeyword";
 }
 
-var f29;
 export function isTSNullKeyword() {
-  return f29 || (f29 = node => node && node.type === "TSNullKeyword");
+  return node => node && node.type === "TSNullKeyword";
 }
 
-var f30;
 export function isTSNeverKeyword() {
-  return f30 || (f30 = node => node && node.type === "TSNeverKeyword");
+  return node => node && node.type === "TSNeverKeyword";
 }
 
-var f31;
 export function isTSThisType() {
-  return f31 || (f31 = node => node && node.type === "TSThisType");
+  return node => node && node.type === "TSThisType";
 }
 
 export function isTSFunctionType(matchers) {
@@ -3448,19 +3522,21 @@ export function isTSFunctionType(matchers) {
     return node => node && node.type === "TSFunctionType";
   }
 
-  let n = 2,
+  let n = 3,
     m0 = matchers["typeParameters"] || (n--, false),
-    m1 = matchers["typeAnnotation"] || (n--, false);
+    m1 = matchers["parameters"] || (n--, false),
+    m2 = matchers["typeAnnotation"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
     node &&
     node.type === "TSFunctionType" &&
     (!m0 || match(m0, node["typeParameters"])) &&
-    (!m1 || match(m1, node["typeAnnotation"]));
+    (!m1 || match(m1, node["parameters"])) &&
+    (!m2 || match(m2, node["typeAnnotation"]));
 }
 
 export function isTSConstructorType(matchers) {
@@ -3468,19 +3544,21 @@ export function isTSConstructorType(matchers) {
     return node => node && node.type === "TSConstructorType";
   }
 
-  let n = 2,
+  let n = 3,
     m0 = matchers["typeParameters"] || (n--, false),
-    m1 = matchers["typeAnnotation"] || (n--, false);
+    m1 = matchers["parameters"] || (n--, false),
+    m2 = matchers["typeAnnotation"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
     node &&
     node.type === "TSConstructorType" &&
     (!m0 || match(m0, node["typeParameters"])) &&
-    (!m1 || match(m1, node["typeAnnotation"]));
+    (!m1 || match(m1, node["parameters"])) &&
+    (!m2 || match(m2, node["typeAnnotation"]));
 }
 
 export function isTSTypeReference(matchers) {
@@ -3493,7 +3571,7 @@ export function isTSTypeReference(matchers) {
     m1 = matchers["typeParameters"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3513,7 +3591,7 @@ export function isTSTypePredicate(matchers) {
     m1 = matchers["typeAnnotation"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3537,7 +3615,7 @@ export function isTSTypeQuery(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3558,7 +3636,7 @@ export function isTSTypeLiteral(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3581,7 +3659,7 @@ export function isTSArrayType(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3606,13 +3684,63 @@ export function isTSTupleType(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
     node &&
     node.type === "TSTupleType" &&
     (!m || match(m, node["elementTypes"]));
+}
+
+export function isTSOptionalType(matcher) {
+  if (typeof matcher === "undefined") {
+    return node => node && node.type === "TSOptionalType";
+  }
+
+  if (typeof matcher !== "object" || Array.isArray(matcher)) {
+    return node =>
+      node &&
+      node.type === "TSOptionalType" &&
+      match(matcher, node["typeAnnotation"]);
+  }
+
+  const m = matcher["typeAnnotation"],
+    n = Object.keys(matcher).length;
+
+  if (n > 1 || (n === 1 && !m)) {
+    return () => false;
+  }
+
+  return node =>
+    node &&
+    node.type === "TSOptionalType" &&
+    (!m || match(m, node["typeAnnotation"]));
+}
+
+export function isTSRestType(matcher) {
+  if (typeof matcher === "undefined") {
+    return node => node && node.type === "TSRestType";
+  }
+
+  if (typeof matcher !== "object" || Array.isArray(matcher)) {
+    return node =>
+      node &&
+      node.type === "TSRestType" &&
+      match(matcher, node["typeAnnotation"]);
+  }
+
+  const m = matcher["typeAnnotation"],
+    n = Object.keys(matcher).length;
+
+  if (n > 1 || (n === 1 && !m)) {
+    return () => false;
+  }
+
+  return node =>
+    node &&
+    node.type === "TSRestType" &&
+    (!m || match(m, node["typeAnnotation"]));
 }
 
 export function isTSUnionType(matcher) {
@@ -3629,7 +3757,7 @@ export function isTSUnionType(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3652,7 +3780,7 @@ export function isTSIntersectionType(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3673,7 +3801,7 @@ export function isTSConditionalType(matchers) {
     m3 = matchers["falseType"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3701,7 +3829,7 @@ export function isTSInferType(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3726,7 +3854,7 @@ export function isTSParenthesizedType(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3751,7 +3879,7 @@ export function isTSTypeOperator(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3770,7 +3898,7 @@ export function isTSIndexedAccessType(matchers) {
     m1 = matchers["indexType"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3790,7 +3918,7 @@ export function isTSMappedType(matchers) {
     m1 = matchers["typeAnnotation"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3814,7 +3942,7 @@ export function isTSLiteralType(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3831,7 +3959,7 @@ export function isTSExpressionWithTypeArguments(matchers) {
     m1 = matchers["typeParameters"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3853,7 +3981,7 @@ export function isTSInterfaceDeclaration(matchers) {
     m3 = matchers["body"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3879,7 +4007,7 @@ export function isTSInterfaceBody(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3897,7 +4025,7 @@ export function isTSTypeAliasDeclaration(matchers) {
     m2 = matchers["typeAnnotation"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3918,7 +4046,7 @@ export function isTSAsExpression(matchers) {
     m1 = matchers["typeAnnotation"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3938,7 +4066,7 @@ export function isTSTypeAssertion(matchers) {
     m1 = matchers["expression"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3958,7 +4086,7 @@ export function isTSEnumDeclaration(matchers) {
     m1 = matchers["members"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3978,7 +4106,7 @@ export function isTSEnumMember(matchers) {
     m1 = matchers["initializer"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -3998,7 +4126,7 @@ export function isTSModuleDeclaration(matchers) {
     m1 = matchers["body"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -4022,11 +4150,33 @@ export function isTSModuleBlock(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
     node && node.type === "TSModuleBlock" && (!m || match(m, node["body"]));
+}
+
+export function isTSImportType(matchers) {
+  if (typeof matchers === "undefined") {
+    return node => node && node.type === "TSImportType";
+  }
+
+  let n = 3,
+    m0 = matchers["argument"] || (n--, false),
+    m1 = matchers["qualifier"] || (n--, false),
+    m2 = matchers["typeParameters"] || (n--, false);
+
+  if (Object.keys(matchers).length !== n) {
+    return () => false;
+  }
+
+  return node =>
+    node &&
+    node.type === "TSImportType" &&
+    (!m0 || match(m0, node["argument"])) &&
+    (!m1 || match(m1, node["qualifier"])) &&
+    (!m2 || match(m2, node["typeParameters"]));
 }
 
 export function isTSImportEqualsDeclaration(matchers) {
@@ -4039,7 +4189,7 @@ export function isTSImportEqualsDeclaration(matchers) {
     m1 = matchers["moduleReference"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -4065,7 +4215,7 @@ export function isTSExternalModuleReference(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -4090,7 +4240,7 @@ export function isTSNonNullExpression(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -4115,7 +4265,7 @@ export function isTSExportAssignment(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -4140,7 +4290,7 @@ export function isTSNamespaceExportDeclaration(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -4165,7 +4315,7 @@ export function isTSTypeAnnotation(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -4190,7 +4340,7 @@ export function isTSTypeParameterInstantiation(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -4215,7 +4365,7 @@ export function isTSTypeParameterDeclaration(matcher) {
     n = Object.keys(matcher).length;
 
   if (n > 1 || (n === 1 && !m)) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
@@ -4234,7 +4384,7 @@ export function isTSTypeParameter(matchers) {
     m1 = matchers["default"] || (n--, false);
 
   if (Object.keys(matchers).length !== n) {
-    return falseFn;
+    return () => false;
   }
 
   return node =>
