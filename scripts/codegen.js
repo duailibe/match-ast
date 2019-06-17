@@ -78,8 +78,8 @@ function generate() {
       keys.length === 0
         ? noMatcher(type)
         : keys.length === 1
-          ? singleMatcher(type, keys[0])
-          : objMatcher(type, keys);
+        ? singleMatcher(type, keys[0])
+        : objMatcher(type, keys);
   }
 
   return prettier.format(code, { parser: "babel" });
