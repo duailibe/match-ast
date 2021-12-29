@@ -1,7 +1,6 @@
 # `match-ast`
 
-[![Travis](https://api.travis-ci.com/duailibe/match-ast.svg)](https://travis-ci.com/duailibe/match-ast)
-[![Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![CI](https://github.com/duailibe/match-ast/actions/workflows/ci.yaml/badge.svg)](https://github.com/duailibe/match-ast/actions/workflows/ci.yaml)
 [![npm](https://img.shields.io/npm/v/match-ast.svg)](https://npmjs.org/match-ast)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
