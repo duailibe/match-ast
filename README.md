@@ -1,6 +1,6 @@
 # `match-ast`
 
-[![CI](https://github.com/duailibe/match-ast/actions/workflows/ci.yaml/badge.svg)](https://github.com/duailibe/match-ast/actions/workflows/ci.yaml)
+[![CI](https://github.com/duailibe/match-ast/actions/workflows/ci.yml/badge.svg)](https://github.com/duailibe/match-ast/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/match-ast.svg)](https://npmjs.org/match-ast)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
