@@ -82,7 +82,7 @@ function generate() {
         : objMatcher(type, keys);
   }
 
-  return prettier.format(code, { parser: "babel" });
+  return prettier.format(code, { filepath: "generated.js" });
 }
 
 require("fs").writeFileSync(process.argv[2], generate());
