@@ -1,5 +1,9 @@
+/* eslint-disable no-console */
+
 "use strict";
 
+const { test } = require("uvu");
+const assert = require("assert");
 const parser = require("@babel/parser");
 const mast = require(".");
 
@@ -8,15 +12,16 @@ const ast = parser.parse("this.foo(bar, eggs, spam)").program.body[0]
 
 test("only checks type with no arguments", () => {
   const check = mast.isCallExpression();
-  expect(check(ast)).toBe(true);
-  expect(check(ast.callee)).toBe(false);
+
+  assert(check(ast) === true);
+  assert(check(ast.callee) === false);
 });
 
 test("should only check type with an empty object", () => {
   const checkCall = mast.isCallExpression({});
   const checkIdentifier = mast.isIdentifier({});
-  expect(checkCall(ast)).toBe(true);
-  expect(checkIdentifier(ast.arguments[0])).toBe(true);
+  assert(checkCall(ast) === true);
+  assert(checkIdentifier(ast.arguments[0]) === true);
 });
 
 test("checks properties if argument is an object", () => {
@@ -26,8 +31,8 @@ test("checks properties if argument is an object", () => {
   const checkFail = mast.isCallExpression({
     callee: mast.isIdentifier()
   });
-  expect(check(ast)).toBe(true);
-  expect(checkFail(ast)).toBe(false);
+  assert(check(ast) === true);
+  assert(checkFail(ast) === false);
 });
 
 test("fails with foreign properties", () => {
@@ -35,13 +40,13 @@ test("fails with foreign properties", () => {
     name: "bar",
     notName: "bar"
   });
-  expect(checkTypeWithOneProp(ast.arguments[0])).toBe(false);
+  assert(checkTypeWithOneProp(ast.arguments[0]) === false);
 
   const checkTypeWithMoreProps = mast.isMemberExpression({
     object: mast.isThisExpression(),
     arguments: [mast.isIdentifier()]
   });
-  expect(checkTypeWithMoreProps(ast.callee)).toBe(false);
+  assert(checkTypeWithMoreProps(ast.callee) === false);
 });
 
 test("checks array if argument is an array", () => {
@@ -51,8 +56,8 @@ test("checks array if argument is an array", () => {
   const check = mast.isCallExpression({
     arguments: [mast.isIdentifier(), mast.isIdentifier(), mast.isIdentifier()]
   });
-  expect(checkFail(ast)).toBe(false);
-  expect(check(ast)).toBe(true);
+  assert(checkFail(ast) === false);
+  assert(check(ast) === true);
 });
 
 test("accepts simple arguments if type has only one property", () => {
@@ -62,23 +67,25 @@ test("accepts simple arguments if type has only one property", () => {
     mast.isIdentifier("foo"),
     mast.isIdentifier()
   ]);
-  expect(checkIdentifier(parser.parseExpression("foo"))).toBe(true);
-  expect(checkNumeric(parser.parseExpression("1"))).toBe(true);
-  expect(checkArray(parser.parseExpression("[foo, bar]"))).toBe(true);
+  assert(checkIdentifier(parser.parseExpression("foo")) === true);
+  assert(checkNumeric(parser.parseExpression("1")) === true);
+  assert(checkArray(parser.parseExpression("[foo, bar]")) === true);
 });
 
 test("accepts functions as matcher", () => {
   const check = mast.isCallExpression({
     arguments: args => args.every(mast.isIdentifier())
   });
-  expect(check(ast)).toBe(true);
+  assert(check(ast) === true);
 });
 
 test("either works", () => {
   const check = mast.either(mast.isIdentifier(), mast.isNumericLiteral());
   const identifier = parser.parseExpression("foo");
   const number = parser.parseExpression("1");
-  expect(check(identifier)).toBe(true);
-  expect(check(number)).toBe(true);
-  expect(check(ast)).toBe(false);
+  assert(check(identifier) === true);
+  assert(check(number) === true);
+  assert(check(ast) === false);
 });
+
+test.run();

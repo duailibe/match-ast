@@ -16,7 +16,9 @@
     "index.js"
   ],
   "scripts": {
-    "prepublishOnly": "make -B build"
+    "prepublishOnly": "make -B build",
+    "coverage": "nyc npm test",
+    "test": "node test.js"
   },
   "devDependencies": {
     "@babel/parser": "7.4.5",
@@ -24,8 +26,9 @@
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^5.0.0",
     "eslint-plugin-prettier": "^3.1.0",
-    "jest": "^24.8.0",
+    "nyc": "^15.1.0",
     "prettier": "1.18.2",
-    "rollup": "1.15.6"
+    "rollup": "1.15.6",
+    "uvu": "^0.5.2"
   }
 }
