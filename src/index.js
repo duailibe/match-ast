@@ -1,3 +1,4 @@
+/*! THIS FILE WAS AUTO-GENERATED, TO UPDATE IT, RUN `npm run gen` !*/
 import match from "./match";
 
 export * from "./builtins";

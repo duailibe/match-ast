@@ -1,5 +1,6 @@
 "use strict";
 
+const path = require("path");
 const typeKeys = require("@babel/types").BUILDER_KEYS;
 const prettier = require("prettier");
 
@@ -67,6 +68,7 @@ function objMatcher(type, keys) {
 
 function generate() {
   let code = `
+    /*! THIS FILE WAS AUTO-GENERATED, TO UPDATE IT, RUN \`npm run gen\` !*/
     import match from "./match";
 
     export * from "./builtins";
@@ -82,7 +84,10 @@ function generate() {
         : objMatcher(type, keys);
   }
 
-  return prettier.format(code, { filepath: "generated.js" });
+  return prettier.format(code, { filepath: "index.js" });
 }
 
-require("fs").writeFileSync(process.argv[2], generate());
+require("fs").writeFileSync(
+  path.join(__dirname, "..", "src", "index.js"),
+  generate()
+);

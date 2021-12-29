@@ -16,7 +16,10 @@
     "index.js"
   ],
   "scripts": {
-    "prepublishOnly": "make -B build",
+    "build": "rollup src/index.js -o index.js -f cjs",
+    "gen": "node scripts/codegen.js",
+    "lint": "eslint . && prettier --list-different README.md",
+    "prepublishOnly": "npm run build",
     "test": "node test.js"
   },
   "devDependencies": {

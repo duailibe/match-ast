@@ -26,10 +26,10 @@ test("should only check type with an empty object", () => {
 
 test("checks properties if argument is an object", () => {
   const check = mast.isCallExpression({
-    callee: mast.isMemberExpression()
+    callee: mast.isMemberExpression(),
   });
   const checkFail = mast.isCallExpression({
-    callee: mast.isIdentifier()
+    callee: mast.isIdentifier(),
   });
   assert(check(ast) === true);
   assert(checkFail(ast) === false);
@@ -38,23 +38,23 @@ test("checks properties if argument is an object", () => {
 test("fails with foreign properties", () => {
   const checkTypeWithOneProp = mast.isIdentifier({
     name: "bar",
-    notName: "bar"
+    notName: "bar",
   });
   assert(checkTypeWithOneProp(ast.arguments[0]) === false);
 
   const checkTypeWithMoreProps = mast.isMemberExpression({
     object: mast.isThisExpression(),
-    arguments: [mast.isIdentifier()]
+    arguments: [mast.isIdentifier()],
   });
   assert(checkTypeWithMoreProps(ast.callee) === false);
 });
 
 test("checks array if argument is an array", () => {
   const checkFail = mast.isCallExpression({
-    arguments: [mast.isIdentifier()]
+    arguments: [mast.isIdentifier()],
   });
   const check = mast.isCallExpression({
-    arguments: [mast.isIdentifier(), mast.isIdentifier(), mast.isIdentifier()]
+    arguments: [mast.isIdentifier(), mast.isIdentifier(), mast.isIdentifier()],
   });
   assert(checkFail(ast) === false);
   assert(check(ast) === true);
@@ -65,7 +65,7 @@ test("accepts simple arguments if type has only one property", () => {
   const checkNumeric = mast.isNumericLiteral(1);
   const checkArray = mast.isArrayExpression([
     mast.isIdentifier("foo"),
-    mast.isIdentifier()
+    mast.isIdentifier(),
   ]);
   assert(checkIdentifier(parser.parseExpression("foo")) === true);
   assert(checkNumeric(parser.parseExpression("1")) === true);
@@ -74,7 +74,7 @@ test("accepts simple arguments if type has only one property", () => {
 
 test("accepts functions as matcher", () => {
   const check = mast.isCallExpression({
-    arguments: args => args.every(mast.isIdentifier())
+    arguments: (args) => args.every(mast.isIdentifier()),
   });
   assert(check(ast) === true);
 });
