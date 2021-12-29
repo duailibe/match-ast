@@ -16,15 +16,15 @@ Example: verify if a tree represents a `JSON.stringify()` call
 const {
   isCallExpression,
   isMemberExpression,
-  isIdentifier
+  isIdentifier,
 } = require("match-ast");
 
 // Check if the tree represents a `JSON.stringify()` call.
 const isJsonStringify = isCallExpression({
   callee: isMemberExpression({
     object: isIdentifier("JSON"),
-    property: isIdentifier("stringify")
-  })
+    property: isIdentifier("stringify"),
+  }),
 });
 ```
 
@@ -57,10 +57,10 @@ const isStringify = isCallExpression({
   callee: either(
     isMemberExpression({
       object: isIdentifier("JSON"),
-      property: isIdentifier("stringify")
+      property: isIdentifier("stringify"),
     }),
     isIdentifier("stringify")
-  )
+  ),
 });
 ```
 
