@@ -20,7 +20,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn
       - run: make build
-      - run: yarn coverage
+      - run: yarn test
       - uses: codecov/codecov-action@v2
 
   lint:

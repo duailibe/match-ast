@@ -6,7 +6,3 @@ env:
   node: true
 rules:
   curly: error
-overrides:
-  - files: test.js
-    env:
-      jest: true
